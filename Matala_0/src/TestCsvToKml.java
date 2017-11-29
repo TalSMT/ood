@@ -1,11 +1,15 @@
+
 import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.ArrayList;
+import  org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Folder;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 public class TestCsvToKml {
 	String file, filKML ,time;
@@ -19,7 +23,7 @@ public class TestCsvToKml {
 		filKML = "C:\\matala\\kmlFile.kml";
 		time ="28/10/2017 20:26";
 		check =new csvToKML(file);
-		check2= new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0);
+		check2= new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0,0,0);
 
 	}
 	@Test

@@ -20,7 +20,7 @@ import de.micromata.opengis.kml.v_2_2_0.Placemark;
  */
 public class csvToKML {
 	private String csvPath;
-	
+
 	public static ArrayList <SampleOfWifi> test1;
 	FilterByTime timeFilter;
 	FilterByLocation locationFilter;
@@ -32,11 +32,11 @@ public class csvToKML {
 	public csvToKML(String csvPath) {
 		super();
 		this.csvPath = csvPath;
-		
+
 		ArrayList <SampleOfWifi> readFile = readCsvFile(csvPath);
 		writeKMLFile(readFile);
 	}
-	
+
 	/**Constructor2 - Receives a folder path and filter parametes extends the reading and creation functions
 	 * 
 	 * @param csvPath
@@ -45,13 +45,13 @@ public class csvToKML {
 	 * @param longitude
 	 * @param latitude
 	 */
-	
-	public csvToKML(String csvPath, String time,String phoneid, double longitude, double latitude ) {
+
+	public csvToKML(String csvPath, String time,String phoneid, double longitude, double latitude,double altitude,double radios ) {
 		super();
 		this.csvPath = csvPath;
 		this.timeFilter= new FilterByTime(time);
 		this.phoneId= new FilterByPhoneId(phoneid);
-		this.locationFilter= new FilterByLocation(longitude,latitude);
+		this.locationFilter= new FilterByLocation(longitude,latitude,altitude,radios);
 
 		ArrayList <SampleOfWifi> readFile = readCsvFile(csvPath);
 		if((time!=null)&&(time!="") )
@@ -62,10 +62,10 @@ public class csvToKML {
 			readFile=filter(readFile, this.locationFilter);
 		writeKMLFile(readFile);
 	}
-	
-	
 
-	
+
+
+
 	//private ArrayList<SampleOfWifi> readCsvFile()
 	/**
 	 * filter - A function that receives ArrayList of SampleOfWifi objects and a value to filter and returns ArrayList of filtered objects according to the desired value
@@ -79,7 +79,7 @@ public class csvToKML {
 			if(condition.test(listAll.get(i)))
 				filtered.add(listAll.get(i));
 		} 
-		
+
 		return filtered;
 	}
 
@@ -179,7 +179,7 @@ public class csvToKML {
 	/**
 	 * writeKMLFile - A function that receives ArrayList of SampleOfWifi and Through the KML library produces KML file with a timeline
 	 * @param listfiltered
-	 * @see : https://developers.google.com/kml/ - KML library
+	 * @see : https://developers.google.com/kml/ - KML library-We used this library because it helped us with the ultimate goal of creating a timeline in Google Maps in the simplest wayõ
 	 */
 
 	public static void  writeKMLFile(ArrayList<SampleOfWifi> listfiltered){
@@ -200,7 +200,7 @@ public class csvToKML {
 					String mac = listfiltered.get(i).getwifiSpotList().get(j).getMac();
 					int frequncy = listfiltered.get(i).getwifiSpotList().get(j).getFrequncy();
 					int signal = listfiltered.get(i).getwifiSpotList().get(j).getSignal();
-                   createPlacemarkWithChart(document, folder, longitude, latitude, ssid, 1, time);
+					createPlacemarkWithChart(document, folder, longitude, latitude, ssid, 1, time);
 				}
 			}
 			kml.marshal(new File("C:\\matala\\kmlFile.kml"));
@@ -214,11 +214,11 @@ public class csvToKML {
 	 * @return Time with "T"  So the format of the date will look like this: "28/10/2017T20:10"
 	 */
 	public static String fixtime(String time)
-    {
-    	String[]timeToSplit =time.split(" ");
-    	String start =timeToSplit[0]+"T";
-    	return start+timeToSplit[1];
-    }	
+	{
+		String[]timeToSplit =time.split(" ");
+		String start =timeToSplit[0]+"T";
+		return start+timeToSplit[1];
+	}	
 	/**
 	 * @see - Sample function given in the library
 	 * @param document
@@ -230,33 +230,33 @@ public class csvToKML {
 	 * @param timestmp
 	 */
 	public static void createPlacemarkWithChart(Document document, Folder folder, double longitude, double latitude, 
-		    String continentName, int coveredLandmass,String timestmp) {
-			de.micromata.opengis.kml.v_2_2_0.Style style = document.createAndAddStyle();
-			style.withId("style_" + continentName) // set the stylename to use this style from the placemark
-			    .createAndSetIconStyle().withScale(1.0); // set size and icon
-			style.createAndSetLabelStyle().withColor("ff43b3ff").withScale(1.0); // set color and size of the continent name
+			String continentName, int coveredLandmass,String timestmp) {
+		de.micromata.opengis.kml.v_2_2_0.Style style = document.createAndAddStyle();
+		style.withId("style_" + continentName) // set the stylename to use this style from the placemark
+		.createAndSetIconStyle().withScale(1.0); // set size and icon
+		style.createAndSetLabelStyle().withColor("ff43b3ff").withScale(1.0); // set color and size of the continent name
 
-			Placemark placemark = folder.createAndAddPlacemark();
-			// use the style for each continent
-			placemark.withName(continentName)
-			    .withStyleUrl("#style_" + continentName)
-			    // 3D chart imgae
-			    .withDescription(
-			        "<![CDATA[BSSID: <b>"+continentName+"</b><br/>Lat: <b>"+latitude+"</b><br/>Lot: <b>"+longitude+"</b><br/>Name: <b>"+continentName+"</b>")
-			    // coordinates and distance (zoom level) of the viewer
-			    .createAndSetLookAt().withLongitude(longitude).withLatitude(latitude).withAltitude(0).withRange(12000000);
-			
-			placemark.createAndSetPoint().addToCoordinates(longitude, latitude); // set coordinates
-			
-			placemark.createAndSetTimeStamp().setWhen(timestmp);
-		}
-	
-	
-	
-	
-	
-	
-	
+		Placemark placemark = folder.createAndAddPlacemark();
+		// use the style for each continent
+		placemark.withName(continentName)
+		.withStyleUrl("#style_" + continentName)
+		// 3D chart imgae
+		.withDescription(
+				"<![CDATA[BSSID: <b>"+continentName+"</b><br/>Lat: <b>"+latitude+"</b><br/>Lot: <b>"+longitude+"</b><br/>Name: <b>"+continentName+"</b>")
+		// coordinates and distance (zoom level) of the viewer
+		.createAndSetLookAt().withLongitude(longitude).withLatitude(latitude).withAltitude(0).withRange(12000000);
+
+		placemark.createAndSetPoint().addToCoordinates(longitude, latitude); // set coordinates
+
+		placemark.createAndSetTimeStamp().setWhen(timestmp);
+	}
+
+
+
+
+
+
+
 	/**
 	 * main
 	 * @param args
@@ -264,11 +264,12 @@ public class csvToKML {
 	 */
 
 	public static void main(String[] args) throws Exception {
-		csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0);
-		
-	//	ArrayList <SampleOfWifi> list = new ArrayList();
-		
-	/*	Condition<SampleOfWifi> condition1 = new Condition<String>() {
+		//csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0,0,0);
+		csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","","",34.8600917,32.09218707,0,0.005);
+
+		//	ArrayList <SampleOfWifi> list = new ArrayList();
+
+		/*	Condition<SampleOfWifi> condition1 = new Condition<String>() {
 			public boolean test(String s) {
 				if (list.get(0).getTime().equals("28/10/2017 20:10")) return true;
 				else return false;
@@ -278,35 +279,35 @@ public class csvToKML {
 		ArrayList<SampleOfWifi> filteredStrings = filter(list, condition1);
 	}*/
 		ArrayList <SampleOfWifi> filterList = new ArrayList<SampleOfWifi>();
-	//	filterList=filter(listOfWifi,  s -> s.getTime().equals("28/10/2017  20:10:00"));
-		
+		//	filterList=filter(listOfWifi,  s -> s.getTime().equals("28/10/2017  20:10:00"));
+
 	}
-	
-/**
- * geters and seters
- * @return
- */
+
+	/**
+	 * geters and seters
+	 * @return
+	 */
 	public String getCsvPath() {
 		return csvPath;
 	}
 
-public FilterByTime getTimeFilter() {
-	return timeFilter;
-}
+	public FilterByTime getTimeFilter() {
+		return timeFilter;
+	}
 
 
-public FilterByLocation getLocationFilter() {
-	return locationFilter;
-}
+	public FilterByLocation getLocationFilter() {
+		return locationFilter;
+	}
 
 
-public FilterByPhoneId getPhoneId() {
-	return phoneId;
-}
+	public FilterByPhoneId getPhoneId() {
+		return phoneId;
+	}
 
 
-	
-	
-	
+
+
+
 }
 

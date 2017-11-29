@@ -44,6 +44,7 @@ public class csvToNewCsv {
 
 		}
 	}
+	
 	/**
 	 * readCsvFile- A function that accepts a folder path and returns a list of up to ten strongest networks for each time point
 	 * @param folderOfCsvFiles
@@ -209,6 +210,18 @@ public class csvToNewCsv {
 
 		}
 	}
+	
+	/**
+	 * getters
+	 * @return
+	 */
+	public File getFolderOfCsvFiles() {
+		return folderOfCsvFiles;
+	}
+	
+	
+	
+	
 	/**
 	 * main
 	 * @param args
@@ -219,4 +232,5 @@ public class csvToNewCsv {
 		
 
 	}
+
 }
