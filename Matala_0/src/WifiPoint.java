@@ -1,5 +1,4 @@
 /**
- * 
  * @author Tal And Shaked
  *@ description - class that Contains an object for each of the ten samples with the strongest signal
  */
