@@ -15,7 +15,7 @@ import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 /**
  * 
- * @author Tal And Shaked
+ * @authors Tal And Shaked
  * @description - The Class receives CSV File according to the 10 samples with the strongest signal according to the time sample, and creates KML file with filtering option.
  */
 public class csvToKML {
@@ -65,8 +65,6 @@ public class csvToKML {
 
 
 
-
-	//private ArrayList<SampleOfWifi> readCsvFile()
 	/**
 	 * filter - A function that receives ArrayList of SampleOfWifi objects and a value to filter and returns ArrayList of filtered objects according to the desired value
 	 * @param list
@@ -83,6 +81,109 @@ public class csvToKML {
 		return filtered;
 	}
 
+	/**
+	 * readCsvFile - A function that receives a file path of CSV, reads it, Disassembles the file to a list of objects and returns it
+	 * @param csvFile
+	 * @return
+	 * @see https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
+	 */
+	
+	/*
+	public static ArrayList <SampleOfWifi> readCsvFile(String csvFile){
+		String sCurrentLine = "";
+		BufferedReader br = null;
+		ArrayList <SampleOfWifi> listOfWifi = new ArrayList<SampleOfWifi>();
+		ArrayList <WifiPoint> listOfWifiPoint = null;
+		ArrayList <SampleOfWifi> filterList = new ArrayList<SampleOfWifi>();
+		try {
+			br = new BufferedReader(new FileReader(csvFile));
+			//System.out.println("try");
+			int counter = 0;
+			while ((sCurrentLine = br.readLine()) != null) {
+				int t = 6; //A parameter that passes the position in a row within CSV file from the columns of the values set for each time sample
+
+				counter++;
+				String[] Lines = sCurrentLine.split(",");
+				SampleOfWifi oneObjectWifi;
+				WifiPoint oneObject;
+
+
+				if (counter > 1 ) {
+					String time = Lines[0];
+					String phoneId = Lines[1];
+					double lat = Double.parseDouble(Lines[2]);
+					double lon = Double.parseDouble(Lines[3]);
+					int alt = Integer.parseInt(Lines[4]);
+					int wifi_networks = Integer.parseInt(Lines[5]);
+					oneObjectWifi = new SampleOfWifi( time,  phoneId,  lat,  lon, alt, wifi_networks);
+
+					while ((t<=42)&&((t-6)/4)< wifi_networks) { // As long as we did not reach the end of the line and until the end of the networks that were absorbed in the same sample time
+						//System.out.println("t= "+t+"count"+counter);
+						listOfWifiPoint= new ArrayList<WifiPoint>();
+						String ssid = Lines[t];
+						String mac = Lines[t+1];
+						int frequncy = Integer.parseInt(Lines[t+2]);
+						int signal = Integer.parseInt(Lines[t+3]);
+						//oneWifiPoint = new WifiPoint(ssid,mac, frequncy,signal);
+						//tempTenNet.add(oneWifiPoint);
+						//	oneObjectWifi.addWifiSpot(ssid, mac, frequncy, signal);
+						oneObject= new WifiPoint (ssid, mac, frequncy, signal);
+						listOfWifiPoint.add(oneObject);
+						t=t+4;
+
+						for (int i = 0; i < listOfWifiPoint.size(); i++) {
+							//System.out.println("hjjjjjjjjjjjjjjjjjjjjjjjhhhhhhhhhhhhhhhhhhhhhgj"+listOfWifiPoint.get(i).getSsid());
+						}
+						//	for (int i = 0; i < oneObjectWifi.getwifiSpotList().size(); i++) {
+						//	System.out.println();
+						//	}
+
+					}
+					oneObjectWifi.addWifiSpot(listOfWifiPoint);
+					listOfWifi.add(oneObjectWifi);
+
+					//filterList=filter(listOfWifi,  s -> s.getTime().equals("28/10/2017  20:10:00"));
+					//	filterlist=filter(listOfWifi,  s -> s.getPhoneId().equals("model=ONEPLUS A3003"));
+					//filterlist= filter(listOfWifi,  s -> s.getLon()==lon && s.getLat()==lat);
+					//System.out.println("listtttttttttttttttttttttttttttttttt"+filterList.toString());
+				}
+				for (int i = 0; i < listOfWifi.size(); i++) {
+					//System.out.println(listOfWifi.get(i).toString());
+					for (int j = 0; j < listOfWifi.get(i).getwifiSpotList().size(); j++) {
+					//	System.out.println( listOfWifi.get(i).getwifiSpotList().get(j).getSsid());
+
+					}
+				}
+				//System.out.println("khgggggggggggg"+listOfWifi.get(3).getwifiSpotList().get(0).getSsid());
+
+				
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		test1=listOfWifi;
+		
+		for (int i = 0; i < listOfWifi.size(); i++) {
+			if (listOfWifi.get(i).getwifiSpotList().size()>3)
+				System.out.println("one e"+listOfWifi.get(i).getwifiSpotList().get(2).getMac());
+			System.out.println();
+		}
+		return listOfWifi;
+	}
+	*/
+	
 	/**
 	 * readCsvFile - A function that receives a file path of CSV, reads it, Disassembles the file to a list of objects and returns it
 	 * @param csvFile
@@ -113,44 +214,43 @@ public class csvToKML {
 					String phoneId = Lines[1];
 					double lat = Double.parseDouble(Lines[2]);
 					double lon = Double.parseDouble(Lines[3]);
-					int alt = Integer.parseInt(Lines[4]);
+					double alt = Double.parseDouble(Lines[4]);
 					int wifi_networks = Integer.parseInt(Lines[5]);
 					oneObjectWifi = new SampleOfWifi( time,  phoneId,  lat,  lon, alt, wifi_networks);
+					listOfWifiPoint= new ArrayList<WifiPoint>();
 
 					while ((t<=42)&&((t-6)/4)< wifi_networks) { // As long as we did not reach the end of the line and until the end of the networks that were absorbed in the same sample time
-						System.out.println("t= "+t+"count"+counter);
-						listOfWifiPoint= new ArrayList<WifiPoint>();
+						//System.out.println("t= "+t+"count"+counter);
 						String ssid = Lines[t];
 						String mac = Lines[t+1];
 						int frequncy = Integer.parseInt(Lines[t+2]);
-						int signal = Integer.parseInt(Lines[t+3]);
+						double signal = Double.parseDouble(Lines[t+3]);
 						//oneWifiPoint = new WifiPoint(ssid,mac, frequncy,signal);
 						//tempTenNet.add(oneWifiPoint);
 						//	oneObjectWifi.addWifiSpot(ssid, mac, frequncy, signal);
 						oneObject= new WifiPoint (ssid, mac, frequncy, signal);
+						
+
 						listOfWifiPoint.add(oneObject);
+						
 						t=t+4;
 
-						for (int i = 0; i < listOfWifiPoint.size(); i++) {
-							System.out.println("hjjjjjjjjjjjjjjjjjjjjjjjhhhhhhhhhhhhhhhhhhhhhgj"+listOfWifiPoint.get(i).getSsid());
-						}
-						//	for (int i = 0; i < oneObjectWifi.getwifiSpotList().size(); i++) {
-						//	System.out.println();
-						//	}
+						
 
 					}
+
 					oneObjectWifi.addWifiSpot(listOfWifiPoint);
 					listOfWifi.add(oneObjectWifi);
 
 					filterList=filter(listOfWifi,  s -> s.getTime().equals("28/10/2017  20:10:00"));
 					//	filterlist=filter(listOfWifi,  s -> s.getPhoneId().equals("model=ONEPLUS A3003"));
 					//filterlist= filter(listOfWifi,  s -> s.getLon()==lon && s.getLat()==lat);
-					System.out.println("listtttttttttttttttttttttttttttttttt"+filterList.toString());
+					//System.out.println("listtttttttttttttttttttttttttttttttt"+filterList.toString());
 				}
 				for (int i = 0; i < listOfWifi.size(); i++) {
-					System.out.println(listOfWifi.get(i).toString());
+					//System.out.println(listOfWifi.get(i).toString());
 					for (int j = 0; j < listOfWifi.get(i).getwifiSpotList().size(); j++) {
-						System.out.println( listOfWifi.get(i).getwifiSpotList().get(j).getSsid());
+						//System.out.println( listOfWifi.get(i).getwifiSpotList().get(j).getSsid());
 
 					}
 				}
@@ -173,9 +273,24 @@ public class csvToKML {
 			}
 
 		}
+		
+		
+		
+		
+		
+		
 		test1=listOfWifi;
 		return listOfWifi;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * writeKMLFile - A function that receives ArrayList of SampleOfWifi and Through the KML library produces KML file with a timeline
 	 * @param listfiltered
@@ -199,7 +314,7 @@ public class csvToKML {
 					String ssid = listfiltered.get(i).getwifiSpotList().get(j).getSsid();
 					String mac = listfiltered.get(i).getwifiSpotList().get(j).getMac();
 					int frequncy = listfiltered.get(i).getwifiSpotList().get(j).getFrequncy();
-					int signal = listfiltered.get(i).getwifiSpotList().get(j).getSignal();
+					double signal = listfiltered.get(i).getwifiSpotList().get(j).getSignal();
 					createPlacemarkWithChart(document, folder, longitude, latitude, ssid, 1, time);
 				}
 			}
@@ -265,8 +380,8 @@ public class csvToKML {
 
 	public static void main(String[] args) throws Exception {
 		//csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0,0,0);
-		csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","","",34.8600917,32.09218707,0,0.005);
-
+	//	csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","","",34.8600917,32.09218707,0,0.005);
+		csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","","",0,0,0,0);
 		//	ArrayList <SampleOfWifi> list = new ArrayList();
 
 		/*	Condition<SampleOfWifi> condition1 = new Condition<String>() {

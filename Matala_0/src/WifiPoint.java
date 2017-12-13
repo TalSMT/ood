@@ -1,14 +1,14 @@
 /**
- * @author Tal And Shaked
+ * @authors Tal And Shaked
  *@ description - class that Contains an object for each of the ten samples with the strongest signal
  */
 public class WifiPoint {
 	private String ssid;
 	private String mac;
 	private int frequncy;
-	private int signal;
+	private double signal;
 
-	public WifiPoint(String ssid, String mac, int frequncy, int signal) {
+	public WifiPoint(String ssid, String mac, int frequncy, double signal) {
 		this.ssid = ssid;
 		this.mac = mac;
 		this.frequncy = frequncy;
@@ -28,7 +28,7 @@ public class WifiPoint {
 		return frequncy;
 	}
 
-	public int getSignal() {
+	public double getSignal() {
 		return signal;
 	}
 
