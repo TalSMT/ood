@@ -1,3 +1,4 @@
+package Testing;
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -5,6 +6,10 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ReadAndWriteFiles.csvToNewCsv;
+import Sample_Object.SampleOfWifi;
+import Sample_Object.WifiPoint;
 /**
  * 
  * @authors Tal and Shaked
@@ -52,21 +57,11 @@ public class TestCsv {
 	public void test_csvFileToArrayList() throws Exception{
 		assertTrue(csvToNewCsv.csvFileToArrayList(file).get(4)[5].equals("-79"));
 	}
-
-	//we used the method above
-/*	@Test
-	public void test_fixedArrayListToSample() throws Exception{
-
-		//System.out.println(csvToNewCsv.fixedArrayListToSample(csvToNewCsv.csvFileToArrayList(file), "model=ONEPLUS A3003").getLat());
-		assertTrue(csvToNewCsv.fixedArrayListToSample(csvToNewCsv.csvFileToArrayList(file), "model=ONEPLUS A3003").equals("model=ONEPLUS A3003"));
+	/*@Test
+	public void testwriteCsvFile(){  
+		csvToNewCsv.writeCsvFile(csvToNewCsv.);
+		assertTrue(csvToKML.test1.get(2).getLon()!=csvToKML.test1.get(2).getLat());
 	}*/
-	@Test
-	public void testprocessedCsvFile(){
-		assertTrue(!csvToNewCsv.processedCsvFile.isEmpty());
-	}
-	@Test
-	public void testwriteCsvFile (){
-		check.getFolderOfCsvFiles().equals(fileNewCsv);
-	}
 	
+
 }

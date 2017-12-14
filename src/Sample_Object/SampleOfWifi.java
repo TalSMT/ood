@@ -1,8 +1,12 @@
+package Sample_Object;
 
 import java.util.ArrayList;
 
 /**
  * 
+ * @authors Tal And Shaked
+ * @ description- The class contains an object for each point with MAC address and signal strength
+ *
  */
 
 public class SampleOfWifi {
@@ -10,11 +14,11 @@ public class SampleOfWifi {
 	private String phoneId;
 	private double lat;
 	private double lon;
-	private int alt;
+	private double alt;
 	private int wifi_network;
 	private ArrayList<WifiPoint> wifiSpotList= new  ArrayList<WifiPoint>();
 
-	public SampleOfWifi(String time, String phoneId, double lat, double lon, int alt, int wifi_networks) {
+	public SampleOfWifi(String time, String phoneId, double lat, double lon, double alt, int wifi_networks) {
 		super();
 		this.time = time;
 		this.phoneId = phoneId;
@@ -55,7 +59,7 @@ public class SampleOfWifi {
 		return lon;
 	}
 
-	public int getAlt() {
+	public double getAlt() {
 		return alt;
 	}
 

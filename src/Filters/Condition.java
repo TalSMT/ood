@@ -1,3 +1,7 @@
+package Filters;
+
+import Sample_Object.SampleOfWifi;
+
 /**
  * 
  * @author Tal and Shaked

@@ -1,3 +1,6 @@
+package Filters;
+
+import Sample_Object.SampleOfWifi;
 
 public class FilterByPhoneId implements Condition {
 	private String fhoneIdFilter;

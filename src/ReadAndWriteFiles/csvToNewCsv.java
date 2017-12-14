@@ -1,3 +1,4 @@
+package ReadAndWriteFiles;
 
 
 import java.io.BufferedReader;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import org.omg.Messaging.SyncScopeHelper;
+
+import Sample_Object.SampleOfWifi;
 /**
  * 
  * @author Tal and Shaked
@@ -44,6 +47,7 @@ public class csvToNewCsv {
 
 		}
 	}
+	
 	/**
 	 * readCsvFile- A function that accepts a folder path and returns a list of up to ten strongest networks for each time point
 	 * @param folderOfCsvFiles
@@ -209,6 +213,18 @@ public class csvToNewCsv {
 
 		}
 	}
+	
+	/**
+	 * getters
+	 * @return
+	 */
+	public File getFolderOfCsvFiles() {
+		return folderOfCsvFiles;
+	}
+	
+	
+	
+	
 	/**
 	 * main
 	 * @param args
@@ -219,4 +235,5 @@ public class csvToNewCsv {
 		
 
 	}
+
 }

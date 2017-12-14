@@ -1,3 +1,6 @@
+package Filters;
+
+import Sample_Object.SampleOfWifi;
 
 public class FilterByTime implements Condition {
 	private String timeFilter;
