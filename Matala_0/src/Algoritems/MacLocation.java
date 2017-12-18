@@ -19,7 +19,7 @@ public class MacLocation {
 			macSamlpe weight_aver;
 			for (int i = 0; i <Quantsample; i++) {
 				 weight[i] =(double)1/(samp.get(i).getSignal()*samp.get(i).getSignal());
-				 System.out.println("weight[i]"+weight[i]);
+				 //System.out.println("weight[i]"+weight[i]);
 				 wLat[i]= samp.get(i).getLat()*weight[i];
 				 wLon[i]= samp.get(i).getLon()*weight[i];
 				 wAlt[i]= samp.get(i).getAlt()*weight[i];
@@ -36,7 +36,10 @@ public class MacLocation {
 			
 				
 				weight_aver= new macSamlpe(sumWeight, weightLat, weightLon, (int) weightAlt);
-			System.out.println("sumWeight"+sumWeight);
+				//weight_aver.setMac(samp.get(0).getMac());
+				 //System.out.println("mac "+samp.get(0).getMac());
+
+			//System.out.println("sumWeight"+sumWeight);
 			return weight_aver;
 			
 		}

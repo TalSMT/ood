@@ -1,4 +1,5 @@
 package Algoritems;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import Sample_Object.macSamlpe;
@@ -8,7 +9,7 @@ public class Constant {
 	
 	//Set up constants
 	// for the first algo
-	static String CsvCombPath="C:\\matala2\\_comb_all_.csv";		//csv path
+	static String CsvCombPath="C:\\matala2\\_comb_all_BM2_.csv";		//csv path
 	
 	static String macFilterString= "42501_10131_891006";		// mac id for filter
 	static int numOfFilteredMacSamples=3;		// number of wanted highes signal sample of the mac
@@ -37,7 +38,7 @@ public class Constant {
 	
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		Database algo1Check= new Database(CsvCombPath, macFilterString, numOfFilteredMacSamples); // call algo 1
 		 ArrayList<macSamlpe> inputcheckList= new ArrayList<>();
@@ -49,7 +50,7 @@ public class Constant {
 		inputcheckList.add(smp3);
 		
 		
-		//-------------------------------------------äëğñú òøëéí ëîå äòøëéí ùì áåòæ ìöåøê áãé÷ä---------------------------------------------------
+		//-------------------------------------------Ã¤Ã«Ã°Ã±Ãº Ã²Ã¸Ã«Ã©Ã­ Ã«Ã®Ã¥ Ã¤Ã²Ã¸Ã«Ã©Ã­ Ã¹Ã¬ Ã¡Ã¥Ã²Ã¦ Ã¬Ã¶Ã¥Ã¸Ãª Ã¡Ã£Ã©Ã·Ã¤---------------------------------------------------
 		 macSamlpe che1 = new macSamlpe(-62, 32.103, 35.208, 650);
 		 che1.setPiWeight(0.476988545);
 		 macSamlpe che2 = new macSamlpe(-82, 32.105, 35.205, 660);
@@ -61,8 +62,8 @@ public class Constant {
 		 datacheckList.add(che2);
 		 datacheckList.add(che3);
 		 macSamlpe thelocation=SamplerLocation.Calcul_weight_aver(datacheckList, inputcheckList);
-		System.out.println("lat "+thelocation.getLat()+" lon "+thelocation.getLon()+" alt "+thelocation.getAlt()+" signal "+thelocation.getSignal());
-		//-------------------------------------------äëğñú òøëéí ëîå äòøëéí ùì áåòæ ìöåøê áãé÷ä---------------------------------------------------
+		//System.out.println("lat "+thelocation.getLat()+" lon "+thelocation.getLon()+" alt "+thelocation.getAlt()+" signal "+thelocation.getSignal());
+		//-------------------------------------------Ã¤Ã«Ã°Ã±Ãº Ã²Ã¸Ã«Ã©Ã­ Ã«Ã®Ã¥ Ã¤Ã²Ã¸Ã«Ã©Ã­ Ã¹Ã¬ Ã¡Ã¥Ã²Ã¦ Ã¬Ã¶Ã¥Ã¸Ãª Ã¡Ã£Ã©Ã·Ã¤---------------------------------------------------
 
 		
 		

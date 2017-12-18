@@ -35,7 +35,7 @@ public class ReadCombCsv {
 
 					if (Lines[0].isEmpty()==false)
 					{
-						System.out.println(time+"time");
+						//System.out.println(time+"time");
 						String phoneId = Lines[1];
 						double lat = Double.parseDouble(Lines[2]);
 						double lon = Double.parseDouble(Lines[3]);
@@ -55,7 +55,7 @@ public class ReadCombCsv {
 							//	oneObjectWifi.addWifiSpot(ssid, mac, frequncy, signal);
 							oneObject= new WifiPoint (ssid, mac, frequncy, signal);
 							
-							System.out.println(oneObject.getSsid());
+							//System.out.println(oneObject.getSsid());
 
 							listOfWifiPoint.add(oneObject);
 							

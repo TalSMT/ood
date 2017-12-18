@@ -27,11 +27,11 @@ public class FilterByMac  {
 		ArrayList<macSamlpe> topNumOfSortAllListOfmac= new ArrayList<macSamlpe>();
 		
 		for (int i = 0; i < numOfTopSamples; i++) {
-			if (numOfTopSamples<=sortAllListOfmac.size())
+			System.out.println("i="+i+"sortsize"+sortAllListOfmac.size());
+			if (i<=sortAllListOfmac.size()-1)
 			topNumOfSortAllListOfmac.add(sortAllListOfmac.get(i));
 			
 		}
-		System.out.println("ssss"+topNumOfSortAllListOfmac.size());
 			
 		return topNumOfSortAllListOfmac;
 
@@ -41,9 +41,9 @@ public class FilterByMac  {
 	public ArrayList<macSamlpe> sort(ArrayList<SampleOfWifi> s) {
 		//קרחאה לפונקמיה שמסההת מהקובץ ומחברת לאריי ליסט אחד את כל הדגימות עם אותו מאק
 		ArrayList<macSamlpe> SortAllListOfmac=filter(s);
-		System.out.println("SortAllListOfmac.size()"+SortAllListOfmac.size());
+		//System.out.println("SortAllListOfmac.size()"+SortAllListOfmac.size());
 		Collections.sort(SortAllListOfmac, SameList);
-		System.out.println("SortAllListOfmac mesunan.size()"+SortAllListOfmac.size());
+	//	System.out.println("SortAllListOfmac mesunan.size()"+SortAllListOfmac.size());
 
 			
 		return SortAllListOfmac;
@@ -78,7 +78,7 @@ private static final Comparator <macSamlpe> SameList = new Comparator<macSamlpe>
 		for (int i = 0; i < s.size(); i++) {
 			listOfmac=test(s.get(i));	
 			for (int j = 0; j < listOfmac.size(); j++) {
-				System.out.println("listOfmac.get(i)"+listOfmac.get(j).getSignal());
+				//System.out.println("listOfmac.get(i)"+listOfmac.get(j).getSignal());
 				allListOfmac.add(listOfmac.get(j));
 				
 			}
@@ -100,14 +100,16 @@ private static final Comparator <macSamlpe> SameList = new Comparator<macSamlpe>
 			if (this.macFilter.equals(s.getwifiSpotList().get(i).getMac()))
 			{
 				
-				System.out.println("equals(s.getwifiSpotList().get(i).getMac()) "+ s.getwifiSpotList().get(i).getMac());
+				//System.out.println("equals(s.getwifiSpotList().get(i).getMac()) "+ s.getwifiSpotList().get(i).getMac());
 
 				macFilter=new macSamlpe(s.getwifiSpotList().get(i).getSignal(), s.getLat(), s.getLon(), s.getAlt());
+				macFilter.setMac(s.getwifiSpotList().get(i).getMac());
+
 				listOfmac.add(macFilter);
 		}
 		
 	}		
-		System.out.println("listOfmac "+ listOfmac.size());
+		//System.out.println("listOfmac "+ listOfmac.size());
 
 		return listOfmac;
 

@@ -37,7 +37,7 @@ public class SamplerLocation {
 				double sumWeight = 0,sumwLat=0,sumwLon=0,sumwAlt=0;
 				double weightLat,weightLon,weightAlt;
 				macSamlpe weight_aver;
-				System.out.println("samp.size()"+samp.size());
+				//System.out.println("samp.size()"+samp.size());
 				 for (int i = 0; i < Constant.numOfSimillarSamples; i++) {
 					 wLat[i]= samp.get(i).getLat()*samp.get(i).getPiWeight();
 					 wLon[i]= samp.get(i).getLon()*samp.get(i).getPiWeight();
@@ -58,7 +58,7 @@ public class SamplerLocation {
 				
 				
 					weight_aver= new macSamlpe(sumWeight, weightLat, weightLon,  weightAlt);
-				System.out.println("sumWeight"+sumWeight);
+				//System.out.println("sumWeight"+sumWeight);
 				return weight_aver;
 				
 			}
@@ -68,9 +68,9 @@ public class SamplerLocation {
 	public static ArrayList<macSamlpe> sort(ArrayList<SampleOfWifi> s, ArrayList<macSamlpe> input) {
 		//קרחאה לפונקמיה שמסההת מהקובץ ומחברת לאריי ליסט אחד את כל הדגימות עם אותו מאק
 		ArrayList<macSamlpe> SortListWithPI=picalc(s, input);
-		System.out.println("SortAllListOfmac.size()"+SortListWithPI.size());
+		//System.out.println("SortAllListOfmac.size()"+SortListWithPI.size());
 		Collections.sort(SortListWithPI, SameList);
-		System.out.println("SortAllListOfmac mesunan.size()"+SortListWithPI.size());
+		//System.out.println("SortAllListOfmac mesunan.size()"+SortListWithPI.size());
 
 			
 		return SortListWithPI;
@@ -148,9 +148,9 @@ private static final Comparator <macSamlpe> SameList = new Comparator<macSamlpe>
 		macSamlpe smp = new macSamlpe(-62, 32.103, 35.208, 650);
 		macSamlpe input = new macSamlpe(-50, 32.103, 35.208, 650);
 		double difcheck= diffcalc(smp, input);
-		System.out.println(difcheck);
+		//System.out.println(difcheck);
 		double weightcheck= weightcalc(smp, input);
-		System.out.println(weightcheck);
+		//System.out.println(weightcheck);
 		ArrayList<SampleOfWifi> s= new ArrayList<>();
 		//ArrayList<SampleOfWifi> input= new ArrayList<>();
 		//macSamlpe list = thesamplerLocation( s, ArrayList<macSamlpe> input)
