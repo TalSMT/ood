@@ -9,11 +9,11 @@ public class Constant {
 	
 	//Set up constants
 	// for the first algo
-	static String CsvCombPath="C:\\matala2\\_comb_all_BM2_.csv";		//csv path
+	static String CsvCombPath="C:\\matala2\\shakedandtalcomb.csv";		//csv path
 	
 	static String macFilterString= "42501_10131_891006";		// mac id for filter
 	static int numOfFilteredMacSamples=3;		// number of wanted highes signal sample of the mac
-	
+	static String outputPathAlgo1="C:\\matala2\\OUTPUT_ALGO\\ALGO1_MacAndLocationCsv.csv";
 	// for the second algo
 	static int power= 2; // the power of the 
 	static double norm= 10000;
@@ -22,6 +22,9 @@ public class Constant {
 	static double noSignal=-120;
 	static double diffNoSig=100;
 	static int numOfSimillarSamples=3;		// number 
+	static String CsvNoGPSPath="C:\\matala2\\shakedandtaltest.csv";		//csv path
+	static String outputPathAlgo2="C:\\matala2\\OUTPUT_ALGO\\ALGO2_SamplerLocationCsv.csv";
+
 
 
 	
@@ -40,7 +43,7 @@ public class Constant {
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		Database algo1Check= new Database(CsvCombPath, macFilterString, numOfFilteredMacSamples); // call algo 1
+		//Database algo1Check= new Database(CsvCombPath, macFilterString, numOfFilteredMacSamples); // call algo 1
 		 ArrayList<macSamlpe> inputcheckList= new ArrayList<>();
 		 macSamlpe smp1 = new macSamlpe(-50, 0, 0, 0);
 		 macSamlpe smp2 = new macSamlpe(-70, 0, 0, 0);
@@ -61,14 +64,13 @@ public class Constant {
 		 datacheckList.add(che1);
 		 datacheckList.add(che2);
 		 datacheckList.add(che3);
-		 macSamlpe thelocation=SamplerLocation.Calcul_weight_aver(datacheckList, inputcheckList);
 		//System.out.println("lat "+thelocation.getLat()+" lon "+thelocation.getLon()+" alt "+thelocation.getAlt()+" signal "+thelocation.getSignal());
 		//-------------------------------------------äëðñú òøëéí ëîå äòøëéí ùì áåòæ ìöåøê áãé÷ä---------------------------------------------------
 
 		
 		
 		
-		//Database algo2Check= new Database(CsvPath, inputcheckList); // call algo 2
+		Database algo2Check= new Database(); // call algo 2
 
 
 

@@ -13,9 +13,7 @@ public class SampleOfWifiToMacSample {
 
 			for (int i = 0; i < list.size(); i++) {
 				newList=cast(list.get(i));	
-				System.out.println("newList.size()"+newList.size());
 				for (int j = 0; j < newList.size(); j++) {
-					System.out.println("listOfmac.get(i)"+newList.get(j).getSignal());
 					allListOfmac.add(newList.get(j));
 					
 				}

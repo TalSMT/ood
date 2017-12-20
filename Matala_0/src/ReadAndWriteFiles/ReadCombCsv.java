@@ -13,13 +13,13 @@ import Sample_Object.WifiPoint;
 public class ReadCombCsv {
 //קורא את הקובץ ללא כותרות
 	
-	public static ArrayList <SampleOfWifi> readCsvComb(){
+	public static ArrayList <SampleOfWifi> readCsvComb(String path){
 		String sCurrentLine = "";
 		BufferedReader br = null;
 		ArrayList <SampleOfWifi> listOfWifi = new ArrayList<SampleOfWifi>();
 		ArrayList <WifiPoint> listOfWifiPoint = null;
 		try {
-			br = new BufferedReader(new FileReader(Constant.getCsvCombPath()));
+			br = new BufferedReader(new FileReader(path));
 			System.out.println("try");
 			
 			while ((sCurrentLine = br.readLine()) != null) {
@@ -37,9 +37,16 @@ public class ReadCombCsv {
 					{
 						//System.out.println(time+"time");
 						String phoneId = Lines[1];
-						double lat = Double.parseDouble(Lines[2]);
-						double lon = Double.parseDouble(Lines[3]);
-						double alt = Double.parseDouble(Lines[4]);
+						double lat = 0;
+						double lon = 0;
+						double alt = 0;
+						if (!Lines[2].equals("?"))
+						{
+						lat = Double.parseDouble(Lines[2]);
+						lon = Double.parseDouble(Lines[3]);
+						alt = Double.parseDouble(Lines[4]);
+						}
+						
 						int wifi_networks = Integer.parseInt(Lines[5]);
 						oneObjectWifi = new SampleOfWifi( time,  phoneId,  lat,  lon, alt, wifi_networks);
 						listOfWifiPoint= new ArrayList<WifiPoint>();

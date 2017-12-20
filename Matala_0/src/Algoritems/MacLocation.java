@@ -30,12 +30,12 @@ public class MacLocation {
 				sumwLon=sumwLon+wLon[i];
 				sumwAlt=sumwAlt+wAlt[i];
 			}
-				weightLat=(double)sumwLat/sumWeight;
-				weightLon=(double)sumwLon/sumWeight;
-				weightAlt=(double)sumwAlt/sumWeight;
+				weightLat=sumwLat/sumWeight;
+				weightLon=sumwLon/sumWeight;
+				weightAlt=sumwAlt/sumWeight;
 			
 				
-				weight_aver= new macSamlpe(sumWeight, weightLat, weightLon, (int) weightAlt);
+				weight_aver= new macSamlpe(sumWeight, weightLat, weightLon, weightAlt);
 				//weight_aver.setMac(samp.get(0).getMac());
 				 //System.out.println("mac "+samp.get(0).getMac());
 
