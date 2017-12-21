@@ -6,6 +6,7 @@ import Filters.FilterByMac;
 import ReadAndWriteFiles.ReadCombCsv;
 import ReadAndWriteFiles.WriteMacLocationCSV;
 import ReadAndWriteFiles.csvToKML;
+import ReadAndWriteFiles.csvToNewCsv;
 import Sample_Object.SampleOfWifi;
 import Sample_Object.macSamlpe;
 
@@ -27,7 +28,7 @@ public class Database {
 	macSamlpe averg;
 	macSamlpe thelocation;
 	ArrayList<macSamlpe> weightAverMacSamples=new ArrayList<>();
-	ArrayList<macSamlpe> location=new ArrayList<>();
+	static ArrayList<macSamlpe> location=new ArrayList<>();
 	ArrayList<macSamlpe> input=new ArrayList<>();
 	macSamlpe temp;
 	ArrayList<SampleOfWifi> outputalgo2;
@@ -66,7 +67,7 @@ public class Database {
 		System.out.println("----------SecondDatabase-----------");
 		samples= ReadCombCsv.readCsvComb(Constant.getCsvCombPath()); // List of A file containing all samples by sample date
 		outputalgo2= ReadCombCsv.readCsvComb(Constant.CsvNoGPSPath); // List of A file containing the mac address you want to find the sample location
-
+		
 		for (int i = 0; i < outputalgo2.size(); i++) {
 			for (int j = 0; j < outputalgo2.get(i).getwifiSpotList().size(); j++) {	 
 				temp= new macSamlpe(outputalgo2.get(i).getwifiSpotList().get(j).getSignal(), 0, 0,0) ;

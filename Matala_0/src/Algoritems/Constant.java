@@ -25,11 +25,11 @@ public class Constant {
 	// for the second algo
 	static int power= 2; 
 	static double norm= 10000;
-	static double sigDiff=0.4;
+	static double sigDiff=0.3;
 	static double minDiff=3;
 	static double noSignal=-120;
 	static double diffNoSig=100;
-	static int numOfSimillarSamples=3;		// A number of samples are desirable for finding similarities
+	static int numOfSimillarSamples=50;		// A number of samples are desirable for finding similarities
 	static String CsvNoGPSPath="C:\\matala2\\_comb_no_gps_ts1.csv";		//csv path- test file to fill the location
 	static String outputPathAlgo2="C:\\matala2\\OUTPUT_ALGO\\ALGO2_SamplerLocationCsv.csv";
 
@@ -43,7 +43,7 @@ public class Constant {
 
 
 	public static void main(String[] args) throws FileNotFoundException {
-		//Database algo1Check= new Database(CsvCombPath, macFilterString, numOfFilteredMacSamples); // call algo 1
+		Database algo1Check= new Database(CsvCombPath, macFilterString, numOfFilteredMacSamples); // call algo 1
 		ArrayList<macSamlpe> inputcheckList= new ArrayList<>();
 		macSamlpe smp1 = new macSamlpe(-50, 0, 0, 0);
 		macSamlpe smp2 = new macSamlpe(-70, 0, 0, 0);

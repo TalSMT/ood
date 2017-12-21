@@ -18,6 +18,7 @@ public class macSamlpe {
 	private double diff;
 	private double weight;
 	private double piWeight;
+	private double Average_diff;
 
 	/**
 	 * 
@@ -61,7 +62,10 @@ public class macSamlpe {
 			return false;
 		return true;
 	}
-
+/**
+ * 
+ * @return Getters And Setters
+ */
 	public String getMac() {
 		return mac;
 	}
@@ -136,6 +140,12 @@ public class macSamlpe {
 
 	public void setAlt(int alt) {
 		this.alt = alt;
+	}
+	public double getAverage_diff() {
+		return Average_diff;
+	}
+	public void setAverage_diff(double average_diff) {
+		Average_diff = average_diff;
 	}
 
 }

@@ -29,8 +29,6 @@ public class ReadCombCsv {
 		ArrayList <WifiPoint> listOfWifiPoint = null;
 		try {
 			br = new BufferedReader(new FileReader(path));
-			System.out.println("try");
-
 			while ((sCurrentLine = br.readLine()) != null) {
 				int t = 6; //A parameter that passes the position in a row within CSV file from the columns of the values set for each time sample		
 				String[] Lines = sCurrentLine.split(",");
