@@ -13,10 +13,21 @@ import javax.print.DocFlavor.STRING;
 import Sample_Object.SampleOfWifi;
 import Sample_Object.macSamlpe;
 
+/**
+ * 
+ * @authors Tal And Shaked
+ * This class contains a function that writes a CSV file
+ *
+ */
 public class WriteMacLocationCSV {
 
-	
-	
+	/**
+	 * 
+	 * @param csvMacSample
+	 * @param outputPath
+	 * @throws FileNotFoundException
+	 */
+
 	public static void  writeCsvFile(ArrayList<macSamlpe> csvMacSample, String outputPath) throws FileNotFoundException { //https://stackoverflow.com/questions/30073980/java-writing-strings-to-a-csv-file
 		BufferedWriter bw = null; // https://www.mkyong.com/java/how-to-write-to-file-in-java-bufferedwriter-example/?utm_source=mkyong&utm_medium=author&utm_campaign=related-post&utm_content=6
 		FileWriter networksCSV = null;
@@ -29,16 +40,13 @@ public class WriteMacLocationCSV {
 			//bw.write(headline);
 			for (int i = 0; i < csvMacSample.size(); i++) {
 				line= csvMacSample.get(i).getMac()+","+csvMacSample.get(i).getLat()+","+csvMacSample.get(i).getLon()+","+csvMacSample.get(i).getAlt()+","+csvMacSample.get(i).getSignal();
-				
-				
 				bw.write(line);
 				bw.write(lineTenNetworks);
 				lineTenNetworks="";
 				bw.write("\n");
 
-				}
+			}
 
-			
 			System.out.println("Done");
 
 		} catch (IOException e) {
@@ -58,60 +66,27 @@ public class WriteMacLocationCSV {
 			} catch (IOException ex) {
 
 				ex.printStackTrace();
-
 			}
 
 		}
 	}
-	
-	
-	
-	
+
+
+	/**
+	 * 
+	 * @param csvMacSample
+	 * @return ArrayList with No duplicate entries
+	 */
+
 	public static ArrayList<macSamlpe>  removeDuplicates(ArrayList<macSamlpe> csvMacSample) { 
-		// נסיר כפילויות בעזרת טבלת גיבוב
+		// We will remove duplicates using a HashSet
 		HashSet<macSamlpe> hashDifferentMac = new HashSet<macSamlpe>();
-		ArrayList<macSamlpe> diffmac = new ArrayList<>(); // רשימה של עצמים שאליה נעביר 
-		//את הערכים מטבלת הגיבוב שתדאג שלא יהיו ערכים כפולים 
+		ArrayList<macSamlpe> diffmac = new ArrayList<>();  
 		for (int i = 0; i < csvMacSample.size(); i++) {
 			hashDifferentMac.add(csvMacSample.get(i));
-			
+
 		}
 		diffmac.addAll(hashDifferentMac);
 		return diffmac;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-	
-	
-	
-	
-	
-	
 }

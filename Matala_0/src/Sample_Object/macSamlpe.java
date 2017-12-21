@@ -1,19 +1,32 @@
 package Sample_Object;
-
+/**
+ * 
+ * @authors Tal And Shaked
+ * This class contains objects for sampling by MAC address
+ *
+ */
 public class macSamlpe {
+	/***
+	 * setting
+	 */
 	private double signal;
 	private double lat;
 	private double lon;
 	private double alt;
-	//
 	private String mac;
 	//for algo 2
 	private double diff;
 	private double weight;
 	private double piWeight;
 
-
-	//First constructor for the first algo
+	/**
+	 * 
+	 * @param signal
+	 * @param lat
+	 * @param lon
+	 * @param alt
+	 * First constructor for the first algo
+	 */
 	public macSamlpe(double signal, double  lat, double lon, double alt) {
 		this.signal=signal;
 		this.lat= lat;
@@ -21,7 +34,9 @@ public class macSamlpe {
 		this.alt=alt;
 
 	}			
-
+/**
+ * for A function that removes duplicate values using HashSet
+ */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * 
  * @authors Tal And Shaked
  * @ description- The class contains an object for each point with MAC address and signal strength
+ * In addition, the PI variable was defined for algorithm 2
  *
  */
 

@@ -1,7 +1,12 @@
 package Filters;
 
 import Sample_Object.SampleOfWifi;
-
+/**
+ * 
+ * @authors Tal And Shaked
+ * This class filters by radius
+ *
+ */
 public class FilterByLocation implements Condition {
 	private double longitudeFilter;
 	private double latitudeFilter;
@@ -9,8 +14,8 @@ public class FilterByLocation implements Condition {
 	private double radiosFilter;
 
 
-	
-	
+
+
 	public FilterByLocation(double longitudeFilter, double latitudeFilter, double altitudeFilter,double radiosFilter) {
 		super();
 		this.longitudeFilter = longitudeFilter;
@@ -20,7 +25,7 @@ public class FilterByLocation implements Condition {
 
 
 	}
-//	d=גˆ�((x1-x2)2+(y1-y2)2)
+	//	d=גˆ�((x1-x2)2+(y1-y2)2)
 	public double radioscalculate(double x, double y){
 		return (Math.sqrt((Math.pow((x-this.latitudeFilter), 2)+(Math.pow((y-this.longitudeFilter), 2)))));
 	}
@@ -32,6 +37,6 @@ public class FilterByLocation implements Condition {
 			return false;
 		return true;
 	}
-	
+
 
 }

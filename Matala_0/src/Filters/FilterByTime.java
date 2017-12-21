@@ -1,10 +1,15 @@
 package Filters;
 
 import Sample_Object.SampleOfWifi;
-
+/**
+ * 
+ * @authors Tal And Shaked
+ * This class filters by Time
+ *
+ */
 public class FilterByTime implements Condition {
 	private String timeFilter;
-	
+
 	/**
 	 *
 	 * @param phoneIdFilter
@@ -17,7 +22,6 @@ public class FilterByTime implements Condition {
 
 	@Override
 	public boolean test(SampleOfWifi s) {
-		// TODO Auto-generated method stub
 		return s.getTime().equals(this.timeFilter);
 	}
 
