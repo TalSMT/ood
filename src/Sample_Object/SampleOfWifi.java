@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * 
  * @authors Tal And Shaked
  * @ description- The class contains an object for each point with MAC address and signal strength
+ * In addition, the PI variable was defined for algorithm 2
  *
  */
 
@@ -17,7 +18,21 @@ public class SampleOfWifi {
 	private double alt;
 	private int wifi_network;
 	private ArrayList<WifiPoint> wifiSpotList= new  ArrayList<WifiPoint>();
+//matala 2 algo 2
+	private double pi=0;
+	
+	
+	//matala 2 algo 2
 
+	public double getPi() {
+		return pi;
+	}
+
+	public void setPi(double pi) {
+		this.pi = pi;
+	}
+	
+	//constructor
 	public SampleOfWifi(String time, String phoneId, double lat, double lon, double alt, int wifi_networks) {
 		super();
 		this.time = time;
