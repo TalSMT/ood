@@ -31,7 +31,7 @@ public class FilterByMac  {
 		ArrayList<macSamlpe> sortAllListOfmac=sort(s);
 		ArrayList<macSamlpe> topNumOfSortAllListOfmac= new ArrayList<macSamlpe>();
 		for (int i = 0; i < numOfTopSamples; i++) {
-			System.out.println("i="+i+"sortsize"+sortAllListOfmac.size());
+			
 			if (i<=sortAllListOfmac.size()-1)
 				topNumOfSortAllListOfmac.add(sortAllListOfmac.get(i));
 		}

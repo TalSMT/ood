@@ -84,7 +84,9 @@ public class Database {
 			// System.out.println(averg.getSignal());
 			//System.out.println("lat "+averg.getLat()+" lon "+averg.getLon()+" alt "+averg.getAlt()+" signal "+averg.getSignal());	 
 		}
-
+		System.out.println("aaa"+samples.get(5).getTime());
 		WriteMacLocationCSV.writeCsvFile( location, Constant.outputPathAlgo2); 
+		System.out.println("aaa"+samples.get(5).getTime());
+
 	}
 }
