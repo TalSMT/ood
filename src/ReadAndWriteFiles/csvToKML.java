@@ -53,15 +53,17 @@ public class csvToKML {
 	 * @param latitude
 	 */
 
-	public csvToKML(String csvPath, String time,String phoneid, double longitude, double latitude,double altitude,double radios ) {
+	public csvToKML(String csvPath, String timeMIN,String timeMAX,String phoneid, double longitude, double latitude,double altitude,double radios ) {
 		super();
+		
 		this.csvPath = csvPath;
-		this.timeFilter= new FilterByTime(time);
+		this.timeFilter= new FilterByTime(timeMIN, timeMAX);
 		this.phoneId= new FilterByPhoneId(phoneid);
 		this.locationFilter= new FilterByLocation(longitude,latitude,altitude,radios);
-
 		ArrayList <SampleOfWifi> readFile = readCsvFile(csvPath);
-		if((time!=null)&&(time!="") )
+		System.out.println("aaaaa"+readFile.get(0).getTime());
+		
+		if((timeMIN!=null)&&(timeMAX!=null)&&(timeMIN!="")&&(timeMAX!="") )
 			readFile=filter(readFile, this.timeFilter);
 		if((phoneid!=null)&&(phoneid!="") )
 			readFile=filter(readFile, this.phoneId);
@@ -282,7 +284,9 @@ public class csvToKML {
 	public static void main(String[] args) throws Exception {
 		//csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0,0,0);
 	//	csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","","",34.8600917,32.09218707,0,0.005);
-		csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","","",0,0,0,0);
+		//csvToKML chek = new csvToKML("C:\\matala\\DataNetWorks.csv","","","",0,0,0,0);
+		//csvToKML  ch = new csvToKML("C:\\matala\\DataNetWorks.csv");
+		csvToKML  ch = new csvToKML("C:\\matala\\DataNetWorks.csv", "09/11/2017 20:41","09/11/2017 20:45", "", 0, 0, 0, 0);
 		//	ArrayList <SampleOfWifi> list = new ArrayList();
 
 		/*	Condition<SampleOfWifi> condition1 = new Condition<String>() {
