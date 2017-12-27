@@ -14,6 +14,7 @@ import Filters.Condition;
 import Filters.FilterByLocation;
 import Filters.FilterByPhoneId;
 import Filters.FilterByTime;
+import Gui_Designer.Gui_Data;
 import Sample_Object.SampleOfWifi;
 import Sample_Object.WifiPoint;
 import de.micromata.opengis.kml.v_2_2_0.Document;
@@ -40,8 +41,7 @@ public class ExportKML {
 		super();
 		this.csvPath = csvPath;
 
-		ArrayList <SampleOfWifi> readFile = ReadCombCsv.readCsvCombwithHeaders(csvPath);
-		writeKMLFile(readFile);
+		//ArrayList <SampleOfWifi> readFile = ReadCombCsv.readCsvCombwithHeaders(csvPath);
 	}
 
 	/**Constructor2 - Receives a folder path and filter parametes extends the reading and creation functions
@@ -133,8 +133,9 @@ public class ExportKML {
 					createPlacemarkWithChart(document, folder, longitude, latitude, ssid, 1, time);
 				}
 			}
-			kml.marshal(new File("C:\\matala\\kmlFile.kml"));
-			System.out.println("Done");
+			String s=Gui_Data.OutputfoldePathForKML+Gui_Data.kmlName;
+			kml.marshal(new File(s));
+			System.out.println(s+" Done");
 		} catch (IOException ex) {
 		}
 	}
