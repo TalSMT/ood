@@ -169,7 +169,7 @@ public class csvToNewCsv {
 		try {
 
 			String headline = " time, id, lat,  lon,  alt, wifi_network, ssid1, mac1, frequncy1, signal1, ssid2, mac2, frequncy2, signal2, ssid3, mac3, frequncy3, signal3, ssid4, mac4, frequncy4, signal4, ssid5, mac5, frequncy5, signal5, ssid6, mac6, frequncy6, signal6, ssid7, mac7, frequncy7, signal7, ssid8, mac8, frequncy8, signal8, ssid9, mac9, frequncy9, signal9, ssid10, mac10, frequncy10, signal10\n";
-			networksCSV = new FileWriter(Gui_Designer.Gui_Data.OutputfoldePath+"\\DataNetWorks.csv"); 
+			networksCSV = new FileWriter(Gui_Designer.Gui_Data.OutputfoldePath); 
 			String line, lineTenNetworks="";
 			bw = new BufferedWriter(networksCSV);
 			bw.write(headline);
