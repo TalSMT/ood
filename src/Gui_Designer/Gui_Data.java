@@ -29,6 +29,10 @@ import javax.swing.event.CaretListener;
 import DataBase.SetDataBase;
 
 import javax.swing.event.CaretEvent;
+import javax.swing.JTextPane;
+import java.awt.Checkbox;
+import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 
 public class Gui_Data {
 
@@ -62,7 +66,10 @@ public class Gui_Data {
 	public static ArrayList <SampleOfWifi> combData;
 	//--------write kml file--------
 	public static String kmlName= "\\KmlFile.kml";
-	
+	public static boolean deletedHeader=false;
+	//--------data info--------------
+	JLabel AnsNumberOfRecords;
+	JLabel AnsNumOfNetworks;
 	
 	/**
 	 * Launch the application.
@@ -172,7 +179,7 @@ public class Gui_Data {
 			//------------------------------------------------------------------------------------
 			public void caretUpdate(CaretEvent e) {
 				combPath=combPath_textField.getText();
-
+				
 			}
 		});
 		combPath_textField.setColumns(10);
@@ -185,8 +192,11 @@ public class Gui_Data {
 				if (combPath!="")
 				{
 					combData=ReadCombCsv.readCsvCombwithHeaders(combPath);
+					AnsNumberOfRecords.setText(""+combData.size());
+					AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
 				}
-					
+
+				
 			}
 		});
 		btnOkcsvCOMB.setForeground(new Color(138, 43, 226));
@@ -195,9 +205,11 @@ public class Gui_Data {
 		JButton btnDeleteDatabase = new JButton("delete database");
 		btnDeleteDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				deletedHeader=true;
 				combData=SetDataBase.deleteCombData(combData);
-				
+				AnsNumberOfRecords.setText(""+combData.size());
+				AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
+
 			}
 		});
 		
@@ -206,7 +218,10 @@ public class Gui_Data {
 		btnUpdateDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					deletedHeader=false;
 					WriteCombCsv.writeCsvFile(combData);
+					AnsNumberOfRecords.setText(""+combData.size());
+					AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -214,11 +229,12 @@ public class Gui_Data {
 			}
 		});
 		
-		//----------------------------write comb csv--------------------------------------------------------------
+		//----------------------------export comb csv--------------------------------------------------------------
 		JButton btnbtnOkInputPath = new JButton("export comb");
 		btnbtnOkInputPath.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					deletedHeader=false;
 					WriteCombCsv.writeCsvFile(processedCsvFile);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
@@ -238,6 +254,24 @@ public class Gui_Data {
 			}
 		});
 		buttonExportKML.setForeground(new Color(138, 43, 226));
+		
+		JLabel lblNumberOfRecords = new JLabel("Number of records");
+		lblNumberOfRecords.setForeground(new Color(138, 43, 226));
+		lblNumberOfRecords.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		AnsNumberOfRecords = new JLabel("0");
+		AnsNumberOfRecords.setForeground(new Color(138, 43, 226));
+		AnsNumberOfRecords.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		JLabel lblNumberOfDiff = new JLabel("number of different \r\nwifi networks");
+		lblNumberOfDiff.setForeground(new Color(138, 43, 226));
+		lblNumberOfDiff.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		AnsNumOfNetworks = new JLabel("0");
+		AnsNumOfNetworks.setForeground(new Color(138, 43, 226));
+		AnsNumOfNetworks.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -248,35 +282,48 @@ public class Gui_Data {
 					.addComponent(btnUpdateDatabase, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 					.addGap(29)
 					.addComponent(buttonExportKML, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(433, Short.MAX_VALUE))
+					.addContainerGap(444, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(17)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
-							.addGap(38)
-							.addGap(35)
+							.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+								.addGap(640))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnOkcsvCOMB, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-									.addGap(24))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblInsertPackagePath, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
+									.addGap(24)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(folderPathInput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(folderPathOutput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(btnbtnOkInputPath, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)))
+									.addContainerGap())
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnReadFiles, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap(15, Short.MAX_VALUE))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblInsertPackagePath, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
-							.addGap(24)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(folderPathOutput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(btnbtnOkInputPath, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))
-								.addComponent(folderPathInput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap())))
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(chckbxNewCheckBox)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)))
+									.addGap(73)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(btnOkcsvCOMB, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+											.addGap(24))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(btnReadFiles, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+											.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -300,8 +347,17 @@ public class Gui_Data {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnDeleteDatabase)
 						.addComponent(btnUpdateDatabase)
-						.addComponent(buttonExportKML))
-					.addGap(289))
+						.addComponent(buttonExportKML)
+						.addComponent(chckbxNewCheckBox))
+					.addGap(35)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+						.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+					.addGap(180))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

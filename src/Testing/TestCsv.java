@@ -39,7 +39,7 @@ public class TestCsv {
 		csvLines.add(arr);
 		fileCsvString = "C:\\matala\\chek";
 		fileNewCsv = "C:\\matala\\DataNetWorks.csv";
-		check = new ReadWigleWifiFiles(fileCsvString);
+		//check = new ReadWigleWifiFiles(fileCsvString);
 	}
 	@Test
 	public void test_isValidFormat() {
