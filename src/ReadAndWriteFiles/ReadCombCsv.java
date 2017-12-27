@@ -85,9 +85,17 @@ public class ReadCombCsv {
 	}
 
 	
+	
 	/**
-	 	 * read  csv comb  with headers
+	 * read  csv comb  with headers
+	 * readCsvFile - A function that receives a file path of CSV, reads it, Disassembles the file to a list of objects and returns it
+	 * @param csvFile
+	 * @return
+	 * @see https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
 	 */
+	
+	 	 
+	 
 	public static ArrayList <SampleOfWifi> readCsvCombwithHeaders(String path){
 		String sCurrentLine = "";
 		BufferedReader br = null;

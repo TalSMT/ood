@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.text.Style;
 
+import DataBase.SetDataBase;
 import Filters.Condition;
 import Filters.FilterByLocation;
 import Filters.FilterByPhoneId;
@@ -64,44 +65,16 @@ public class ExportKML {
 		System.out.println("aaaaa"+readFile.get(0).getTime());
 		
 		if((timeMIN!=null)&&(timeMAX!=null)&&(timeMIN!="")&&(timeMAX!="") )
-			readFile=filter(readFile, this.timeFilter);
+			readFile=SetDataBase.filter(readFile, this.timeFilter);
 		if((phoneid!=null)&&(phoneid!="") )
-			readFile=filter(readFile, this.phoneId);
+			readFile=SetDataBase.filter(readFile, this.phoneId);
 		if((longitude!=0)&&(latitude!=0) )
-			readFile=filter(readFile, this.locationFilter);
+			readFile=SetDataBase.filter(readFile, this.locationFilter);
 		writeKMLFile(readFile);
 	}
 
 
 
-	/**
-	 * filter - A function that receives ArrayList of SampleOfWifi objects and a value to filter and returns ArrayList of filtered objects according to the desired value
-	 * @param list
-	 * @param condition
-	 * @return
-	 */
-	public static ArrayList<SampleOfWifi> filter(ArrayList<SampleOfWifi> listAll, Condition condition){
-		ArrayList<SampleOfWifi> filtered = new ArrayList<>();
-		for (int i = 0; i < listAll.size(); i++) {
-			if(condition.test(listAll.get(i)))
-				filtered.add(listAll.get(i));
-		} 
-
-		return filtered;
-	}
-
-	
-	/**
-	 * readCsvFile - A function that receives a file path of CSV, reads it, Disassembles the file to a list of objects and returns it
-	 * @param csvFile
-	 * @return
-	 * @see https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
-	 */
-	
-	
-	
-	
-	
 	
 	
 	
