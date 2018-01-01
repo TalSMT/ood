@@ -23,11 +23,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.event.CaretListener;
 
 import DataBase.SetDataBase;
+import Filters.FilterByLocation;
 import Filters.FilterByPhoneId;
+import Filters.FilterByTime;
 
 import javax.swing.event.CaretEvent;
 import javax.swing.JTextPane;
@@ -35,6 +38,7 @@ import java.awt.Checkbox;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollBar;
+import javax.sql.rowset.Joinable;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Canvas;
 
@@ -77,12 +81,15 @@ public class Gui_Data {
 	public static JTextField textFieldPhoneID;
 	public static  JTextField textField_StartTime;
 	public static  JTextField textField_EndTime;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	public static JTextField textField_lat;
+	public static JTextField textField_lon;
+	public static JTextField textField_radios;
 	//--------filter--------------
 	public static JCheckBox CheckBoxByPhoneID;
 	static FilterByPhoneId filterID;
+	static FilterByTime filterTIME;
+	static FilterByLocation filterLocation;
+
 	public static JCheckBox CheckBoxByTime;
 	public static JCheckBox CheckboxByLocation;
 	private static JComboBox AndNotORcomboBox;
@@ -306,14 +313,14 @@ public class Gui_Data {
 		
 		 CheckboxByLocation = new JCheckBox("by Location");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textField_lat = new JTextField();
+		textField_lat.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textField_lon = new JTextField();
+		textField_lon.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		textField_radios = new JTextField();
+		textField_radios.setColumns(10);
 		
 		AndNotORcomboBox = new JComboBox();
 		AndNotORcomboBox.addActionListener(new ActionListener() {
@@ -414,15 +421,15 @@ public class Gui_Data {
 					.addContainerGap(600, Short.MAX_VALUE)
 					.addComponent(CheckboxByLocation, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)
-					.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textField_lat, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 					.addGap(95))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(697, Short.MAX_VALUE)
-					.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textField_lon, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 					.addGap(95))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(697, Short.MAX_VALUE)
-					.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textField_radios, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 					.addGap(95))
 		);
 		groupLayout.setVerticalGroup(
@@ -480,11 +487,11 @@ public class Gui_Data {
 									.addComponent(CheckboxByLocation))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(16)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(textField_lat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 							.addGap(12)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField_lon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(10)
-							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textField_radios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(buttonExportFilterComb)))
@@ -498,30 +505,121 @@ public class Gui_Data {
 	public static ArrayList <SampleOfWifi> filterID ( ArrayList <SampleOfWifi> combData)
 	{
 		ArrayList <SampleOfWifi> filtered=combData;
+		
+		if (Gui_Data.Operand.equals("OR"))
+		{
+			ArrayList <SampleOfWifi> specificFiltered1=combData;
+			ArrayList <SampleOfWifi> specificFiltered2=combData;
+			ArrayList <SampleOfWifi> specificFiltered3=combData;// he will contain the and operator
+			ArrayList <SampleOfWifi> join=new ArrayList<>();
 
-		System.out.println("is correct"+ filtered.get(3).getPhoneId());
-		//_________________filter by phone ID___________
-		if (Gui_Data.CheckBoxByPhoneID.isSelected()){
-			if (!textFieldPhoneID.getText().isEmpty()){
-				filterID=new FilterByPhoneId(textFieldPhoneID.getText());
-				filtered=SetDataBase.filter(combData,filterID);
+			if ((Gui_Data.CheckBoxByPhoneID.isSelected())&&(Gui_Data.CheckBoxByTime.isSelected()))
+			{
+				if (!textFieldPhoneID.getText().isEmpty()){
+					filterID=new FilterByPhoneId(textFieldPhoneID.getText());
+					specificFiltered1=SetDataBase.filter(combData,filterID);
+				}
+				if ((!textField_StartTime.getText().isEmpty())&&(!textField_EndTime.getText().isEmpty())){
+					filterTIME=new FilterByTime(textField_StartTime.getText(),textField_EndTime.getText());
+					specificFiltered2=SetDataBase.filter(filtered,filterTIME);
+					specificFiltered3=SetDataBase.filter(specificFiltered1,filterTIME);
+
+				}
+				
 			}
-		}
-		//_________________filter by time___________
-				if (Gui_Data.CheckBoxByTime.isSelected()){
-					if ((!textField_StartTime.getText().isEmpty())&&(!textField_EndTime.getText().isEmpty())){
-						//filterTime=new FilterByPhoneId(textFieldPhoneID.getText());
-						filtered=SetDataBase.filter(combData,filterID);
+			
+			if ((Gui_Data.CheckBoxByPhoneID.isSelected())&&(Gui_Data.CheckboxByLocation.isSelected()))
+			{
+				if (!textFieldPhoneID.getText().isEmpty()){
+					filterID=new FilterByPhoneId(textFieldPhoneID.getText());
+					specificFiltered1=SetDataBase.filter(combData,filterID);
+				}
+				if ((!textField_lat.getText().isEmpty())&&(!textField_lon.getText().isEmpty())&&(!textField_radios.getText().isEmpty())){
+					double lat = Double.parseDouble(textField_lat.getText());
+					double lon = Double.parseDouble(textField_lon.getText());
+					double radios = Double.parseDouble(textField_radios.getText());
+					if ((!textField_lat.getText().isEmpty())&&(!textField_lon.getText().isEmpty())&&(!textField_radios.getText().isEmpty())){
+						filterLocation=new FilterByLocation(lat,lon,0,radios);
+						specificFiltered2=SetDataBase.filter(filtered,filterLocation);
+						specificFiltered3=SetDataBase.filter(specificFiltered1,filterLocation);
+
 					}
 				}
-		
-		//_________________filter by location___________
-		if (Gui_Data.CheckboxByLocation.isSelected()){
-			if (!textFieldPhoneID.getText().isEmpty()){
-				filterID=new FilterByPhoneId(textFieldPhoneID.getText());
-				filtered=SetDataBase.filter(combData,filterID);
+			}
+			
+			if ((Gui_Data.CheckBoxByTime.isSelected())&&(Gui_Data.CheckboxByLocation.isSelected()))
+			{
+				if ((!textField_StartTime.getText().isEmpty())&&(!textField_EndTime.getText().isEmpty())){
+					filterTIME=new FilterByTime(textField_StartTime.getText(),textField_EndTime.getText());
+					specificFiltered1=SetDataBase.filter(filtered,filterTIME);
+				}
+				if ((!textField_lat.getText().isEmpty())&&(!textField_lon.getText().isEmpty())&&(!textField_radios.getText().isEmpty())){
+					double lat = Double.parseDouble(textField_lat.getText());
+					double lon = Double.parseDouble(textField_lon.getText());
+					double radios = Double.parseDouble(textField_radios.getText());
+					if ((!textField_lat.getText().isEmpty())&&(!textField_lon.getText().isEmpty())&&(!textField_radios.getText().isEmpty())){
+						filterLocation=new FilterByLocation(lat,lon,0,radios);
+						specificFiltered2=SetDataBase.filter(filtered,filterLocation);
+						specificFiltered3=SetDataBase.filter(specificFiltered1,filterLocation);
+
+					}
+				}
+			}
+			
+			//we will add the specificFiltered2 to specificFiltered1
+			for (int i = 0; i < specificFiltered2.size(); i++) {
+				join.add(specificFiltered2.get(i));
+			}
+			for (int i = 0; i < specificFiltered1.size(); i++) {
+				join.add(specificFiltered1.get(i));
+			}
+			
+			for (int i = 0; i < specificFiltered3.size(); i++) {
+				for (int j = 0; j < join.size(); j++) {
+					if(specificFiltered3.get(i).equals(join.get(j)))
+					{
+						join.remove(j);
+						j--;
+						}
+					
+					
+				}
+			}
+			filtered=join;
+			
+			
+
+		}
+		else
+		{
+			System.out.println("is correct"+ filtered.get(3).getPhoneId());
+			//_________________filter by phone ID___________
+			if (Gui_Data.CheckBoxByPhoneID.isSelected()){
+				if (!textFieldPhoneID.getText().isEmpty()){
+					filterID=new FilterByPhoneId(textFieldPhoneID.getText());
+					filtered=SetDataBase.filter(combData,filterID);
+				}
+			}
+			//_________________filter by time___________
+					if (Gui_Data.CheckBoxByTime.isSelected()){
+						if ((!textField_StartTime.getText().isEmpty())&&(!textField_EndTime.getText().isEmpty())){
+							filterTIME=new FilterByTime(textField_StartTime.getText(),textField_EndTime.getText());
+							filtered=SetDataBase.filter(filtered,filterTIME);
+						}
+					}
+			
+			//_________________filter by location___________
+					double lat = Double.parseDouble(textField_lat.getText());
+					double lon = Double.parseDouble(textField_lon.getText());
+					double radios = Double.parseDouble(textField_radios.getText());
+			if (Gui_Data.CheckboxByLocation.isSelected()){
+				if ((!textField_lat.getText().isEmpty())&&(!textField_lon.getText().isEmpty())&&(!textField_radios.getText().isEmpty())){
+					filterLocation=new FilterByLocation(lat,lon,0,radios);
+					filtered=SetDataBase.filter(filtered,filterLocation);
+				}
 			}
 		}
+		
 		
 		
 	filtered=SetDataBase.filterNOT(combData, filtered);

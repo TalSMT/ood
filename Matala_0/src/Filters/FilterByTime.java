@@ -8,6 +8,7 @@ import Sample_Object.SampleOfWifi;
 
 
 import java.util.Date;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -35,8 +36,11 @@ public class FilterByTime implements Condition {
 	 */
 	public FilterByTime(String timeMINstr, String timeMAXstr) {//https://stackoverflow.com/questions/29927362/how-to-convert-date-to-localtime
 		super();
+		long hthala = Date.parse(timeMINstr);// option 1 - not working
+		long sof = Date.parse(timeMAXstr);
+		
 		System.out.println(timeMINstr);
-        LocalDateTime localDateTimeMIN = LocalDateTime.parse(timeMINstr, formatter);
+        LocalDateTime localDateTimeMIN = LocalDateTime.parse(timeMINstr, formatter); // option 2 not working as well
         this.timeMIN= localDateTimeMIN.toLocalTime();
         
         LocalDateTime localDateTimeMAX = LocalDateTime.parse(timeMAXstr, formatter);
@@ -58,6 +62,11 @@ public class FilterByTime implements Condition {
 
 	
 	//
-	
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		FilterByTime filterTIME=new FilterByTime("28/10/2017 20:10:00","28/10/2017 20:30:00");
+		long d = Date.parse("28/10/2017 20:10:00");
+
+	}
 	
 }
