@@ -25,7 +25,8 @@ import java.util.*;
 public class FilterByTime implements Condition {
 	private LocalTime timeMIN;
 	private LocalTime timeMAX;
-	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S", Locale.US);//����� ������ ����
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.US);//ìùðåú ìôåøîè ùìðå
+	private DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm", Locale.US);//ìùðåú ìôåøîè ùìðå
 
 
 	/**
@@ -34,6 +35,7 @@ public class FilterByTime implements Condition {
 	 */
 	public FilterByTime(String timeMINstr, String timeMAXstr) {//https://stackoverflow.com/questions/29927362/how-to-convert-date-to-localtime
 		super();
+		System.out.println(timeMINstr);
         LocalDateTime localDateTimeMIN = LocalDateTime.parse(timeMINstr, formatter);
         this.timeMIN= localDateTimeMIN.toLocalTime();
         

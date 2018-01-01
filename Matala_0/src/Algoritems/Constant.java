@@ -25,7 +25,7 @@ public class Constant {
 	// for the second algo
 	static int power= 2; 
 	static double norm= 10000;
-	static double sigDiff=0.3;
+	static double sigDiff=0.4;
 	static double minDiff=3;
 	static double noSignal=-120;
 	static double diffNoSig=100;
@@ -43,7 +43,7 @@ public class Constant {
 
 
 	public static void main(String[] args) throws FileNotFoundException {
-		Database algo1Check= new Database(CsvCombPath, macFilterString, numOfFilteredMacSamples); // call algo 1
+		//Database algo1Check= new Database(CsvCombPath, macFilterString, numOfFilteredMacSamples); // call algo 1
 		ArrayList<macSamlpe> inputcheckList= new ArrayList<>();
 		macSamlpe smp1 = new macSamlpe(-50, 0, 0, 0);
 		macSamlpe smp2 = new macSamlpe(-70, 0, 0, 0);
@@ -72,7 +72,7 @@ public class Constant {
 
 		Database algo2Check= new Database(); // call algo 2
 
-		System.out.println("test");
+
 
 	}
 

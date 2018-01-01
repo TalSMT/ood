@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/Algoritems/Constant.java=UTF-8
 encoding//src/Algoritems/Database.java=UTF-8
+encoding//src/Algoritems/MacLocation.java=UTF-8
+encoding//src/Algoritems/SampleOfWifiToMacSample.java=UTF-8
 encoding//src/Filters/FilterByLocation.java=UTF-8
+encoding//src/Filters/FilterByTime.java=UTF-8

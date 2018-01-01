@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import Filters.FilterByMac;
 import ReadAndWriteFiles.ReadCombCsv;
 import ReadAndWriteFiles.WriteMacLocationCSV;
-import ReadAndWriteFiles.csvToKML;
-import ReadAndWriteFiles.csvToNewCsv;
+import ReadAndWriteFiles.ExportKML;
+import ReadAndWriteFiles.ReadWigleWifiFiles;
 import Sample_Object.SampleOfWifi;
 import Sample_Object.macSamlpe;
 
@@ -65,7 +65,6 @@ public class Database {
 	 */
 	public Database() throws FileNotFoundException {
 		System.out.println("----------SecondDatabase-----------");
-		System.out.println("check");
 		samples= ReadCombCsv.readCsvComb(Constant.getCsvCombPath()); // List of A file containing all samples by sample date
 		outputalgo2= ReadCombCsv.readCsvComb(Constant.CsvNoGPSPath); // List of A file containing the mac address you want to find the sample location
 		
@@ -85,9 +84,9 @@ public class Database {
 			// System.out.println(averg.getSignal());
 			//System.out.println("lat "+averg.getLat()+" lon "+averg.getLon()+" alt "+averg.getAlt()+" signal "+averg.getSignal());	 
 		}
-		System.out.println("aaa"+samples.get(5).getTime());
+		System.out.println("ttttiiiimmmmmmeeeeee"+samples.get(5).getTime());
 		WriteMacLocationCSV.writeCsvFile( location, Constant.outputPathAlgo2); 
-		System.out.println("aaa"+samples.get(5).getTime());
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 	}
 }
