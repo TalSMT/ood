@@ -56,7 +56,7 @@ public class csvToKML {
 	public csvToKML(String csvPath, String time,String phoneid, double longitude, double latitude,double altitude,double radios ) {
 		super();
 		this.csvPath = csvPath;
-		this.timeFilter= new FilterByTime(time);
+		//this.timeFilter= new FilterByTime(timeMIN, timeMAX);
 		this.phoneId= new FilterByPhoneId(phoneid);
 		this.locationFilter= new FilterByLocation(longitude,latitude,altitude,radios);
 

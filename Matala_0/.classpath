@@ -8,7 +8,5 @@
 	<classpathentry kind="lib" path="lib/jaxb-impl-2.1.17.jar"/>
 	<classpathentry kind="lib" path="lib/jsr173_api-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/Tal/Desktop/מדעי המחשב-שנה ב&apos;/מונחה עצמים/מטלה 2/testing/Algo1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Tal/Desktop/מדעי המחשב-שנה ב&apos;/מונחה עצמים/מטלה 2/testing/Algo2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

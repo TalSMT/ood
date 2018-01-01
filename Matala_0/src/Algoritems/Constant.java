@@ -72,7 +72,7 @@ public class Constant {
 
 		Database algo2Check= new Database(); // call algo 2
 
-
+		System.out.println("test");
 
 	}
 

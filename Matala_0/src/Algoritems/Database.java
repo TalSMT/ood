@@ -65,6 +65,7 @@ public class Database {
 	 */
 	public Database() throws FileNotFoundException {
 		System.out.println("----------SecondDatabase-----------");
+		System.out.println("check");
 		samples= ReadCombCsv.readCsvComb(Constant.getCsvCombPath()); // List of A file containing all samples by sample date
 		outputalgo2= ReadCombCsv.readCsvComb(Constant.CsvNoGPSPath); // List of A file containing the mac address you want to find the sample location
 		
