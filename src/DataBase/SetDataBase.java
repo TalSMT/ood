@@ -77,6 +77,7 @@ public class SetDataBase {
 					}
 					
 				}
+				
 				if (flag) {
 				filteredNOT.add(combData.get(i));
 				flag=true;

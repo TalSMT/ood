@@ -36,6 +36,7 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollBar;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Canvas;
 
 public class Gui_Data {
 
@@ -74,8 +75,8 @@ public class Gui_Data {
 	JLabel AnsNumberOfRecords;
 	JLabel AnsNumOfNetworks;
 	public static JTextField textFieldPhoneID;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	public static  JTextField textField_StartTime;
+	public static  JTextField textField_EndTime;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -83,7 +84,7 @@ public class Gui_Data {
 	public static JCheckBox CheckBoxByPhoneID;
 	static FilterByPhoneId filterID;
 	public static JCheckBox CheckBoxByTime;
-	public static JCheckBox CheckbxByLocation;
+	public static JCheckBox CheckboxByLocation;
 	private static JComboBox AndNotORcomboBox;
 	private JButton buttonExportFilterComb;
 	public static String Operand="";
@@ -297,13 +298,13 @@ public class Gui_Data {
 		textFieldPhoneID = new JTextField();
 		textFieldPhoneID.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textField_StartTime = new JTextField();
+		textField_StartTime.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textField_EndTime = new JTextField();
+		textField_EndTime.setColumns(10);
 		
-		 CheckbxByLocation = new JCheckBox("by Location");
+		 CheckboxByLocation = new JCheckBox("by Location");
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
@@ -395,13 +396,13 @@ public class Gui_Data {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 									.addGap(95))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(42)
 									.addComponent(CheckBoxByTime, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
 									.addGap(12)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_StartTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 									.addGap(93))))))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(602, Short.MAX_VALUE)
@@ -411,7 +412,7 @@ public class Gui_Data {
 					.addGap(92))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(600, Short.MAX_VALUE)
-					.addComponent(CheckbxByLocation, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+					.addComponent(CheckboxByLocation, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)
 					.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 					.addGap(95))
@@ -468,15 +469,15 @@ public class Gui_Data {
 							.addGap(52)
 							.addComponent(textFieldPhoneID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(22)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField_StartTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(17)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(15)
-									.addComponent(CheckbxByLocation))
+									.addComponent(CheckboxByLocation))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(16)
 									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
@@ -499,13 +500,29 @@ public class Gui_Data {
 		ArrayList <SampleOfWifi> filtered=combData;
 
 		System.out.println("is correct"+ filtered.get(3).getPhoneId());
+		//_________________filter by phone ID___________
 		if (Gui_Data.CheckBoxByPhoneID.isSelected()){
 			if (!textFieldPhoneID.getText().isEmpty()){
 				filterID=new FilterByPhoneId(textFieldPhoneID.getText());
 				filtered=SetDataBase.filter(combData,filterID);
 			}
-		
 		}
+		//_________________filter by time___________
+				if (Gui_Data.CheckBoxByTime.isSelected()){
+					if ((!textField_StartTime.getText().isEmpty())&&(!textField_EndTime.getText().isEmpty())){
+						//filterTime=new FilterByPhoneId(textFieldPhoneID.getText());
+						filtered=SetDataBase.filter(combData,filterID);
+					}
+				}
+		
+		//_________________filter by location___________
+		if (Gui_Data.CheckboxByLocation.isSelected()){
+			if (!textFieldPhoneID.getText().isEmpty()){
+				filterID=new FilterByPhoneId(textFieldPhoneID.getText());
+				filtered=SetDataBase.filter(combData,filterID);
+			}
+		}
+		
 		
 	filtered=SetDataBase.filterNOT(combData, filtered);
 	return filtered;
