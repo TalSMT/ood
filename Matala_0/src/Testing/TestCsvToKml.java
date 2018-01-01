@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import ReadAndWriteFiles.csvToKML;
+import ReadAndWriteFiles.ExportKML;
 import Sample_Object.SampleOfWifi;
 import Sample_Object.WifiPoint;
 
@@ -16,32 +16,32 @@ public class TestCsvToKml {
 	SampleOfWifi sampCheck;
 	WifiPoint wifiPointCheck;
 	ArrayList<SampleOfWifi> arrListCheck=new ArrayList<SampleOfWifi>();
-	csvToKML check, check2;
+	ExportKML check, check2;
 	@Before
 	public void setUp() throws Exception {
 		file = "C:\\matala\\DataNetWorks.csv";
 		filKML = "C:\\matala\\kmlFile.kml";
 		time ="28/10/2017 20:26";
-		check =new csvToKML(file);
-		check2= new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0,0,0);
+		check =new ExportKML(file);
+		//check2= new csvToKML("C:\\matala\\DataNetWorks.csv","28/10/2017 20:15","",0,0,0,0);
 
 	}
 	@Test
 	public void testNotEmptyreadCsvFile(){
-		csvToKML.readCsvFile(file);
+		//ExportKML.readCsvFile(file);
 		assertTrue(!file.isEmpty());
 		
 	}
 	@Test
 	public void testreadCsvFile(){
-		csvToKML.readCsvFile(file);
+		//ExportKML.readCsvFile(file);
 		assertTrue(!file.equals(" "));
 	}
 	
 	@Test
 	public void testwriteKMLFile(){  
-		csvToKML.writeKMLFile(csvToKML.test1);
-		assertTrue(csvToKML.test1.get(2).getLon()!=csvToKML.test1.get(2).getLat());
+		ExportKML.writeKMLFile(ExportKML.test1);
+		assertTrue(ExportKML.test1.get(2).getLon()!=ExportKML.test1.get(2).getLat());
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class TestCsvToKml {
 	}
 	@Test
 	public void testfixtime(){
-		assertTrue(csvToKML.fixtime(time).equals("28/10/2017T20:26"));
+		assertTrue(ExportKML.fixtime(time).equals("28/10/2017T20:26"));
 		
 	}
 	@Test

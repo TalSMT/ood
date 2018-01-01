@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import ReadAndWriteFiles.csvToNewCsv;
+import ReadAndWriteFiles.ReadWigleWifiFiles;
 import Sample_Object.SampleOfWifi;
 import Sample_Object.WifiPoint;
 /**
@@ -25,7 +25,7 @@ public class TestCsv {
 	String[] arr = new String[2];
 	ArrayList<String[]> csvLines = new ArrayList<String[]>();
 	private ArrayList<SampleOfWifi> listfiltered;
-	csvToNewCsv check;
+	ReadWigleWifiFiles check;
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,23 +39,23 @@ public class TestCsv {
 		csvLines.add(arr);
 		fileCsvString = "C:\\matala\\chek";
 		fileNewCsv = "C:\\matala\\DataNetWorks.csv";
-		check = new csvToNewCsv(fileCsvString);
+		//check = new ReadWigleWifiFiles(fileCsvString);
 	}
 	@Test
 	public void test_isValidFormat() {
-		assertTrue(csvToNewCsv.isValidFormat(file));
+		assertTrue(ReadWigleWifiFiles.isValidFormat(file));
 	}
 	@Test
 	public void test_readCsvFile() throws Exception{
 		if (folderOfCsvFiles.canRead()) {
 
-			assertTrue(csvToNewCsv.readCsvFile(folderOfCsvFiles).get(1).getTime().equals("28/10/2017 20:11"));
+			assertTrue(ReadWigleWifiFiles.readCsvFile(folderOfCsvFiles).get(1).getTime().equals("28/10/2017 20:11"));
 		}
 
 	}
 	@Test
 	public void test_csvFileToArrayList() throws Exception{
-		assertTrue(csvToNewCsv.csvFileToArrayList(file).get(4)[5].equals("-79"));
+		assertTrue(ReadWigleWifiFiles.csvFileToArrayList(file).get(4)[5].equals("-79"));
 	}
 	/*@Test
 	public void testwriteCsvFile(){  
