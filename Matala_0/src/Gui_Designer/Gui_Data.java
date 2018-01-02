@@ -27,6 +27,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.event.CaretListener;
 
+import Algoritems.CallToAlgo1;
+import Algoritems.Constant;
 import DataBase.SetDataBase;
 import Filters.FilterByLocation;
 import Filters.FilterByPhoneId;
@@ -41,6 +43,7 @@ import javax.swing.JScrollBar;
 import javax.sql.rowset.Joinable;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Canvas;
+import javax.swing.JTabbedPane;
 
 public class Gui_Data {
 
@@ -95,8 +98,10 @@ public class Gui_Data {
 	private static JComboBox AndNotORcomboBox;
 	private JButton buttonExportFilterComb;
 	public static String Operand="";
-	
-	
+	//-----Algo 1 - insert mac and get the mac location
+	public static JTextField txtMac;
+	public static CallToAlgo1 algo1;
+	public static JLabel label_macLocation;
 	/**
 	 * Launch the application.
 	 */
@@ -127,7 +132,7 @@ public class Gui_Data {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 192, 203));
-		frame.setBounds(100, 100, 971, 535);
+		frame.setBounds(100, 100, 1222, 817);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblInsertPackagePath = new JLabel("Insert Input package path");
@@ -218,6 +223,8 @@ public class Gui_Data {
 				if (combPath!="")
 				{
 					combData=ReadCombCsv.readCsvCombwithHeaders(combPath);
+					Constant.setCsvCombPath(combPath);
+					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					AnsNumberOfRecords.setText(""+combData.size());
 					AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
 				}
@@ -346,9 +353,35 @@ public class Gui_Data {
 				AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
 			}
 		});
+		
+		JButton btn_CallAlgo1 = new JButton("Mac");
+		btn_CallAlgo1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if (!txtMac.getText().isEmpty()){
+					try {
+						algo1= new CallToAlgo1(txtMac.getText());
+						label_macLocation.setText("LOCTAION: "+algo1.averg.getLat()+" , "+algo1.averg.getLon()+" alt: "+algo1.averg.getAlt());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+				}
+			}
+		});
+		
+		txtMac = new JTextField();
+		txtMac.setText("Insert Mac or comb csv");
+		txtMac.setColumns(10);
+		
+		label_macLocation = new JLabel("___");
+		label_macLocation.setForeground(Color.MAGENTA);
+		label_macLocation.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(34)
 					.addComponent(btnDeleteDatabase)
@@ -356,146 +389,152 @@ public class Gui_Data {
 					.addComponent(btnUpdateDatabase, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 					.addGap(29)
 					.addComponent(buttonExportKML, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(422, Short.MAX_VALUE))
+					.addContainerGap(637, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(17)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblInsertPackagePath, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
-							.addGap(24)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(folderPathInput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(folderPathOutput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(btnbtnOkInputPath, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)))
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
-							.addGap(73)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnOkcsvCOMB, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-									.addGap(24))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnReadFiles, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(buttonExportFilterComb)
-								.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(textField_lon, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addContainerGap(838, Short.MAX_VALUE)
+										.addComponent(CheckBoxByPhoneID)
+										.addGap(13))
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(17)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addGroup(groupLayout.createSequentialGroup()
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addComponent(lblInsertPackagePath, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
+												.addGap(24)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addComponent(folderPathInput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
+													.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(folderPathOutput_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.UNRELATED)
+														.addComponent(btnbtnOkInputPath, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))))
+											.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+												.addGap(18)
+												.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
+												.addGap(73)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(btnOkcsvCOMB, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+														.addGap(24))
+													.addComponent(btnReadFiles, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)))
+											.addGroup(groupLayout.createSequentialGroup()
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+													.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+													.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
+												.addPreferredGap(ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
+												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+													.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(AndNotORcomboBox, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+														.addGap(40)
+														.addComponent(CheckBoxByTime, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+														.addGap(35))
+													.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(CheckboxByLocation, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+														.addGap(22)))))))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addComponent(textField_lat, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
-									.addGap(64)
-									.addComponent(AndNotORcomboBox, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(textFieldPhoneID, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textField_StartTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btn_CallAlgo1, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+							.addGap(29)
+							.addComponent(txtMac, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+							.addGap(547)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-									.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-									.addGap(95))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(42)
-									.addComponent(CheckBoxByTime, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-									.addGap(12)
-									.addComponent(textField_StartTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-									.addGap(93))))))
+								.addComponent(buttonExportFilterComb)
+								.addComponent(textField_radios, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))))
+					.addGap(37))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(602, Short.MAX_VALUE)
-					.addComponent(CheckBoxByPhoneID)
-					.addGap(13)
-					.addComponent(textFieldPhoneID, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-					.addGap(92))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(600, Short.MAX_VALUE)
-					.addComponent(CheckboxByLocation, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addComponent(textField_lat, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-					.addGap(95))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(697, Short.MAX_VALUE)
-					.addComponent(textField_lon, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-					.addGap(95))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(697, Short.MAX_VALUE)
-					.addComponent(textField_radios, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-					.addGap(95))
+					.addGap(215)
+					.addComponent(label_macLocation, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(800, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(19)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblInsertPackagePath)
-						.addComponent(folderPathInput_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnReadFiles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(15)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-						.addComponent(folderPathOutput_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnbtnOkInputPath))
-					.addGap(59)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-						.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOkcsvCOMB))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(27)
+							.addGap(19)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnDeleteDatabase)
-								.addComponent(btnUpdateDatabase)
-								.addComponent(buttonExportKML))
-							.addGap(35)
+								.addComponent(lblInsertPackagePath)
+								.addComponent(folderPathInput_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnReadFiles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(15)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-								.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
+								.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+								.addComponent(folderPathOutput_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnbtnOkInputPath))
+							.addGap(59)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-								.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(51)
-							.addComponent(CheckBoxByPhoneID)
-							.addGap(20)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(CheckBoxByTime)
-								.addComponent(AndNotORcomboBox, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(52)
-							.addComponent(textFieldPhoneID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(22)
-							.addComponent(textField_StartTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(17)
-							.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+								.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnOkcsvCOMB))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(15)
-									.addComponent(CheckboxByLocation))
+									.addGap(27)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnDeleteDatabase)
+										.addComponent(btnUpdateDatabase)
+										.addComponent(buttonExportKML))
+									.addGap(35)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+										.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+										.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(16)
-									.addComponent(textField_lat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addGap(12)
-							.addComponent(textField_lon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(10)
-							.addComponent(textField_radios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGap(51)
+									.addComponent(CheckBoxByPhoneID)
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(CheckBoxByTime)
+										.addComponent(AndNotORcomboBox, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(52)
+									.addComponent(textFieldPhoneID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(textField_StartTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGap(25)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textField_lat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(CheckboxByLocation))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField_lon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(18)
-							.addComponent(buttonExportFilterComb)))
-					.addGap(80))
+							.addContainerGap(312, Short.MAX_VALUE)
+							.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(100)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textField_radios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(buttonExportFilterComb)
+						.addComponent(btn_CallAlgo1, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtMac, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(label_macLocation, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+					.addGap(189))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
@@ -609,11 +648,12 @@ public class Gui_Data {
 					}
 			
 			//_________________filter by location___________
+					
+			if (Gui_Data.CheckboxByLocation.isSelected()){
+				if ((!textField_lat.getText().isEmpty())&&(!textField_lon.getText().isEmpty())&&(!textField_radios.getText().isEmpty())){
 					double lat = Double.parseDouble(textField_lat.getText());
 					double lon = Double.parseDouble(textField_lon.getText());
 					double radios = Double.parseDouble(textField_radios.getText());
-			if (Gui_Data.CheckboxByLocation.isSelected()){
-				if ((!textField_lat.getText().isEmpty())&&(!textField_lon.getText().isEmpty())&&(!textField_radios.getText().isEmpty())){
 					filterLocation=new FilterByLocation(lat,lon,0,radios);
 					filtered=SetDataBase.filter(filtered,filterLocation);
 				}

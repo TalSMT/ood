@@ -26,6 +26,11 @@ public class Constant {
 	static int power= 2; 
 	static double norm= 10000;
 	static double sigDiff=0.4;
+	public static void setCsvCombPath(String csvCombPath) {
+		CsvCombPath = csvCombPath;
+	}
+
+
 	static double minDiff=3;
 	static double noSignal=-120;
 	static double diffNoSig=100;
@@ -70,7 +75,7 @@ public class Constant {
 
 
 
-		Database algo2Check= new Database(); // call algo 2
+		CallToAlgo2 algo2Check= new CallToAlgo2(); // call algo 2
 
 
 
