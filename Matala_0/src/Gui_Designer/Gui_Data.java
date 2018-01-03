@@ -61,9 +61,11 @@ public class Gui_Data {
 	
 	//-----------------parameters-------------------------------
 	String combName = "\\DataNetWorks.csv";
+	String combFilterdName = "\\FilterdDataNetWorks.csv";
+
 	String completeCombPath="";
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField folderPathInput_textField;
 	static String InputfoldePath="";
 	public static String OutputfoldePath="";
@@ -185,7 +187,7 @@ public class Gui_Data {
 						
 						frame.getContentPane().setBackground(new Color(0, 0, 0));
 						// newCsv = new csvToNewCsv(InputfoldePath);
-						JOptionPane.showMessageDialog(null, "Your message goes here!","Message", JOptionPane.ERROR_MESSAGE);
+						//JOptionPane.showMessageDialog(null, "Your message goes here!","Message", JOptionPane.ERROR_MESSAGE);
 						File folderOfCsvFiles = new File(InputfoldePath);
 						if (folderOfCsvFiles.canRead()) {
 							 processedCsvFile = ReadWigleWifiFiles.readCsvFile(folderOfCsvFiles);
@@ -365,9 +367,13 @@ public class Gui_Data {
 		buttonExportFilterComb = new JButton("export database filtered");
 		buttonExportFilterComb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				combData= filterID(combData);
 				try {
+					String tempoutOutPut=OutputfoldePath;
+					OutputfoldePath=folderPathOutput_textField.getText()+combFilterdName;
 					WriteCombCsv.writeCsvFile(combData);
+					OutputfoldePath=tempoutOutPut;
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
