@@ -23,7 +23,7 @@ public class CallToAlgo2 {
 
 	//Setting Variables
 	ArrayList<SampleOfWifi> samples;
-	macSamlpe thelocation;
+	public static macSamlpe thelocation;
 	static ArrayList<macSamlpe> location=new ArrayList<>();
 	ArrayList<macSamlpe> input=new ArrayList<>();
 	macSamlpe temp;
@@ -61,4 +61,25 @@ public class CallToAlgo2 {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 	}
+	
+	/**
+	 * read 3 mac and signal and return the location
+	 * @throws FileNotFoundException
+	 * This is the second constructor for the second algorithm.
+	 */
+	public CallToAlgo2(macSamlpe mac1, macSamlpe mac2, macSamlpe mac3) throws FileNotFoundException {
+		System.out.println("----------SecondDatabase-----------");
+		samples= ReadCombCsv.readCsvComb(Constant.getCsvCombPath()); // List of A file containing all samples by sample date		
+		input.add(mac1);
+		input.add(mac2);
+		input.add(mac3);
+			thelocation=SamplerLocation.thesamplerLocation(samples, input);
+			
+		
+
+	}
+	
+	
+	
 }
+
