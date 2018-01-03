@@ -120,7 +120,8 @@ public class Gui_Data {
 	public static macSamlpe mac1;
 	public static macSamlpe mac2;
 	public static macSamlpe mac3;
-
+	public static JTextField txtInsrertStringOfCombLine;
+	public static SampleOfWifi smp;
 	
 		
 	
@@ -466,7 +467,17 @@ public class Gui_Data {
 					
 					
 				}
-				
+				else if ((!txtInsrertStringOfCombLine.getText().isEmpty()))
+				{
+					smp=CallToAlgo2.lineToSampleOfWifi(txtInsrertStringOfCombLine.getText());
+					try {
+						algo2= new CallToAlgo2(smp);
+						label_SamplerLocation.setText("LOCTAION: "+algo2.thelocation.getLat()+" , "+algo2.thelocation.getLon()+" alt: "+algo2.thelocation.getAlt());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				
 			
 			}
@@ -475,6 +486,10 @@ public class Gui_Data {
 		label_SamplerLocation = new JLabel("___");
 		label_SamplerLocation.setForeground(Color.MAGENTA);
 		label_SamplerLocation.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		txtInsrertStringOfCombLine = new JTextField();
+		txtInsrertStringOfCombLine.setText("insrert String of comb line");
+		txtInsrertStringOfCombLine.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -583,14 +598,16 @@ public class Gui_Data {
 								.addGap(18)
 								.addComponent(txtInsrertSignal1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
 							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(txtInsrertMac3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addComponent(txtInsrertStringOfCombLine, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtInsrertMac3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
 								.addGap(18)
 								.addComponent(txtInsrertSignal3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
 								.addContainerGap()))))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(175)
-					.addComponent(label_SamplerLocation, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(843, Short.MAX_VALUE))
+					.addGap(166)
+					.addComponent(label_SamplerLocation, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(489, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -674,9 +691,11 @@ public class Gui_Data {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(47)
 							.addComponent(txtInsrertSignal3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(63)
+					.addGap(45)
+					.addComponent(txtInsrertStringOfCombLine, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(40)
 					.addComponent(label_SamplerLocation, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-					.addGap(393)
+					.addGap(335)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
