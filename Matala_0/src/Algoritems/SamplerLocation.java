@@ -29,9 +29,9 @@ public class SamplerLocation {
  public static macSamlpe thesamplerLocation(ArrayList<SampleOfWifi> s, ArrayList<macSamlpe> input)
  {
   ArrayList<SampleOfWifi> theSortmacSampleList = sort(s, input);
-  for (int i = 0; i < theSortmacSampleList.size(); i++) {
-    //System.out.println(" pi "+theSortmacSampleList.get(2).getPi()+"lat "+theSortmacSampleList.get(2).getLat()+" lon "+theSortmacSampleList.get(2).getLon()+" alt "+theSortmacSampleList.get(2).getAlt());
-  }
+//  for (int i = 0; i < theSortmacSampleList.size(); i++) {
+//    System.out.println(" pi "+theSortmacSampleList.get(2).getPi()+"lat "+theSortmacSampleList.get(2).getLat()+" lon "+theSortmacSampleList.get(2).getLon()+" alt "+theSortmacSampleList.get(2).getAlt());
+//  }
   macSamlpe output=Calcul_weight_aver(theSortmacSampleList, input);
 
   //System.out.println("lat "+output.getLat()+" lon "+output.getLon()+" alt "+output.getAlt());
@@ -106,6 +106,9 @@ public class SamplerLocation {
 
  public static ArrayList<SampleOfWifi> sort(ArrayList<SampleOfWifi> s, ArrayList<macSamlpe> input) {
   ArrayList<SampleOfWifi> SortListWithPI=picalc(s, input);
+  for (int i = 0; i < SortListWithPI.size(); i++) {
+	    System.out.println(" pi "+SortListWithPI.get(2).getPi()+"lat "+SortListWithPI.get(2).getLat()+" lon "+SortListWithPI.get(2).getLon()+" alt "+SortListWithPI.get(2).getAlt());
+	  }
   //System.out.println("SortAllListOfmac.size()"+SortListWithPI.size());
   Collections.sort(SortListWithPI, SameList);
   //System.out.println("SortAllListOfmac mesunan.size()"+SortListWithPI.size());

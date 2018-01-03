@@ -18,6 +18,7 @@ import ReadAndWriteFiles.ReadCombCsv;
 import ReadAndWriteFiles.WriteCombCsv;
 import ReadAndWriteFiles.ReadWigleWifiFiles;
 import Sample_Object.SampleOfWifi;
+import Sample_Object.macSamlpe;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -28,6 +29,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.CaretListener;
 
 import Algoritems.CallToAlgo1;
+import Algoritems.CallToAlgo2;
 import Algoritems.Constant;
 import DataBase.SetDataBase;
 import Filters.FilterByLocation;
@@ -111,9 +113,17 @@ public class Gui_Data {
 	public static JTextField txtInsrertSignal2;
 	public static JTextField textField_2;
 	public static JTextField textField_3;
-	public static JTextField txtInsrertMac;
-	public static JTextField txtInsrertSignal;
+	public static JTextField txtInsrertMac3;
+	public static JTextField txtInsrertSignal3;
 	public static JLabel label_SamplerLocation;
+	public static CallToAlgo2 algo2;
+	public static macSamlpe mac1;
+	public static macSamlpe mac2;
+	public static macSamlpe mac3;
+
+	
+		
+	
 	/**
 	 * Launch the application.
 	 */
@@ -365,7 +375,7 @@ public class Gui_Data {
 				AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
 			}
 		});
-		
+		//-------------------------------------------call algo 1-------------------------------------
 		JButton btn_CallAlgo1 = new JButton("Mac");
 		btn_CallAlgo1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -424,15 +434,43 @@ public class Gui_Data {
 		textField_3.setText("insrert signal2");
 		textField_3.setColumns(10);
 		
-		txtInsrertMac = new JTextField();
-		txtInsrertMac.setText("insrert mac3");
-		txtInsrertMac.setColumns(10);
+		txtInsrertMac3 = new JTextField();
+		txtInsrertMac3.setText("insrert mac3");
+		txtInsrertMac3.setColumns(10);
 		
-		txtInsrertSignal = new JTextField();
-		txtInsrertSignal.setText("insrert signal3");
-		txtInsrertSignal.setColumns(10);
-		
+		txtInsrertSignal3 = new JTextField();
+		txtInsrertSignal3.setText("insrert signal3");
+		txtInsrertSignal3.setColumns(10);
+		//-------------------------------------------call algo 2-------------------------------------
 		JButton btnSubmit = new JButton("submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if ((!txtInsrertMac1.getText().isEmpty())&&(!txtInsrertMac2.getText().isEmpty())&&(!txtInsrertMac3.getText().isEmpty())&&(!txtInsrertSignal1.getText().isEmpty())&&(!txtInsrertSignal2.getText().isEmpty())&&(!txtInsrertSignal3.getText().isEmpty())){
+					
+					double signal1D = Double.parseDouble(txtInsrertSignal1.getText());
+					mac1= new macSamlpe(signal1D, 0, 0, 0);
+					mac1.setMac(txtInsrertMac1.getText());
+					double signal2D = Double.parseDouble(txtInsrertSignal2.getText());
+					mac2= new macSamlpe(signal2D, 0, 0, 0);
+					mac2.setMac(txtInsrertMac2.getText());
+					double signal3D = Double.parseDouble(txtInsrertSignal2.getText());
+					mac3= new macSamlpe(signal3D, 0, 0, 0);
+					mac3.setMac(txtInsrertMac3.getText());
+					try {
+						algo2= new CallToAlgo2(mac1, mac2, mac3);
+						label_SamplerLocation.setText("LOCTAION: "+algo2.thelocation.getLat()+" , "+algo2.thelocation.getLon()+" alt: "+algo2.thelocation.getAlt());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+				}
+				
+				
+			
+			}
+		});
 		
 		label_SamplerLocation = new JLabel("___");
 		label_SamplerLocation.setForeground(Color.MAGENTA);
@@ -545,9 +583,9 @@ public class Gui_Data {
 								.addGap(18)
 								.addComponent(txtInsrertSignal1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
 							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(txtInsrertMac, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtInsrertMac3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
 								.addGap(18)
-								.addComponent(txtInsrertSignal, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtInsrertSignal3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
 								.addContainerGap()))))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(175)
@@ -632,10 +670,10 @@ public class Gui_Data {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(36)
-							.addComponent(txtInsrertMac, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtInsrertMac3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(47)
-							.addComponent(txtInsrertSignal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(txtInsrertSignal3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(63)
 					.addComponent(label_SamplerLocation, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 					.addGap(393)
