@@ -8,7 +8,7 @@ import Sample_Object.SampleOfWifi;
  *
  */
 public class FilterByPhoneId implements Condition {
-	private String fhoneIdFilter;
+	private String PhoneIdFilter;
 
 	/**
 	 *
@@ -16,13 +16,13 @@ public class FilterByPhoneId implements Condition {
 	 */
 	public FilterByPhoneId(String phoneIdFilter) {
 		super();
-		fhoneIdFilter = phoneIdFilter;
+		PhoneIdFilter = phoneIdFilter;
 	}
 
 
 	@Override
 	public boolean test(SampleOfWifi s) {
-		return s.getPhoneId().equals(this.fhoneIdFilter);
+		return s.getPhoneId().equals(this.PhoneIdFilter);
 	}
 
 }

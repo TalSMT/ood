@@ -38,7 +38,7 @@ public class Constant {
 	static int numOfSimillarSamples=3;		// A number of samples are desirable for finding similarities
 	static String CsvNoGPSPath="C:\\matala2\\_comb_no_gps_ts1.csv";		//csv path- test file to fill the location
 	static String outputPathAlgo2="C:\\matala2\\OUTPUT_ALGO\\ALGO2_SamplerLocationCsv.csv";
-
+    public static String filename = "C:\\matala\\OUTPUT\\object";
 
 
 

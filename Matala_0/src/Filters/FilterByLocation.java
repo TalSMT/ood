@@ -7,7 +7,7 @@ import Sample_Object.SampleOfWifi;
  * This class filters by radius
  *
  */
-public class FilterByLocation implements Condition {
+public class FilterByLocation implements Condition  {
 	private double longitudeFilter;
 	private double latitudeFilter;
 	private double altitudeFilter;
