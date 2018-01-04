@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 
 import Gui_Designer.Gui_Data;
 
-public class SimpleThreadPool {
+public class ThreadMain {
 
     public static void main(String[] args) {
         
