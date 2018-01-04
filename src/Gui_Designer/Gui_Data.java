@@ -7,9 +7,12 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -21,6 +24,7 @@ import Sample_Object.SampleOfWifi;
 import Sample_Object.macSamlpe;
 
 import java.awt.event.ActionListener;
+import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -67,6 +71,7 @@ public class Gui_Data {
 	String completeCombPath="";
 
 	public JFrame frame;
+	private ImageIcon image1;
 	private JTextField folderPathInput_textField;
 	public static String InputfoldePath="";
 	public static String OutputfoldePath="";
@@ -125,6 +130,7 @@ public class Gui_Data {
 	public static macSamlpe mac3;
 	public static JTextField txtInsrertStringOfCombLine;
 	public static SampleOfWifi smp;
+	//-----Filters-------------------------------
 	public static String filter_Properties= " ";
 	public static FilterObject filterp;
 	private JButton btnFilterProperties;
@@ -161,7 +167,9 @@ public class Gui_Data {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		image1=new ImageIcon(getClass().getResource("/black_background1.png"));
 		frame.getContentPane().setBackground(new Color(255, 192, 203));
+		
 		frame.setBounds(100, 100, 1225, 1072);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -535,7 +543,7 @@ public class Gui_Data {
 					.addComponent(btnUpdateDatabase, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 					.addGap(29)
 					.addComponent(buttonExportKML, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(676, Short.MAX_VALUE))
+					.addContainerGap(640, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -544,7 +552,7 @@ public class Gui_Data {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap(883, Short.MAX_VALUE)
+									.addContainerGap(841, Short.MAX_VALUE)
 									.addComponent(CheckBoxByPhoneID)
 									.addGap(13))
 								.addGroup(groupLayout.createSequentialGroup()
@@ -568,7 +576,7 @@ public class Gui_Data {
 											.addGap(73)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(btnOkcsvCOMB, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+													.addComponent(btnOkcsvCOMB, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
 													.addGap(24))
 												.addComponent(btnReadFiles, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)))
 										.addGroup(groupLayout.createSequentialGroup()
@@ -581,7 +589,7 @@ public class Gui_Data {
 													.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
 													.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
-											.addPreferredGap(ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
 													.addComponent(AndNotORcomboBox, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
@@ -598,14 +606,14 @@ public class Gui_Data {
 									.addComponent(textField_StartTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 									.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(124)
 									.addComponent(btn_CallAlgo1, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
 									.addComponent(txtMac, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 									.addGap(547))
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createSequentialGroup()
 									.addContainerGap()
 									.addComponent(btnUndoFilter, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
 									.addGap(59)))
@@ -647,11 +655,11 @@ public class Gui_Data {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(166)
 					.addComponent(label_SamplerLocation, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(495, Short.MAX_VALUE))
+					.addContainerGap(489, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(767, Short.MAX_VALUE)
-					.addComponent(label_Filter, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-					.addGap(162))
+					.addContainerGap(761, Short.MAX_VALUE)
+					.addComponent(label_Filter, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
+					.addGap(146))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -707,7 +715,7 @@ public class Gui_Data {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(textField_lon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap(273, Short.MAX_VALUE)
+							.addContainerGap(308, Short.MAX_VALUE)
 							.addComponent(textField_EndTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(100)))
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -787,6 +795,8 @@ public class Gui_Data {
 				}
 				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Time("+textField_StartTime.getText()+"<data<"+textField_EndTime.getText()+")))";
 				label_Filter.setText(filter_Properties);
+				//щерд
+				filterp=new FilterObject("","","",textFieldPhoneID.getText(),textField_StartTime.getText(),textField_EndTime.getText());
 				System.out.println(filter_Properties);
 			}
 			
@@ -809,6 +819,8 @@ public class Gui_Data {
 				}
 				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Location("+textField_radios.getText()+"<"+"Distance ("+textField_lat.getText()+","+textField_lon.getText()+"))))";
 				label_Filter.setText(filter_Properties);
+				//щерд
+				filterp=new FilterObject(textField_radios.getText(),textField_lat.getText(),textField_lon.getText(),textFieldPhoneID.getText(),"","");
 				System.out.println(filter_Properties);
 			}
 			
@@ -831,6 +843,8 @@ public class Gui_Data {
 				}
 				filter_Properties="(Time("+textField_StartTime.getText()+"<data<"+textField_EndTime.getText()+")||(Location("+textField_radios.getText()+"<"+"Distance ("+textField_lat.getText()+","+textField_lon.getText()+"))))";
 				label_Filter.setText(filter_Properties);
+				//щерд
+				filterp=new FilterObject(textField_radios.getText(),textField_radios.getText(),textField_lon.getText(),"",textField_StartTime.getText(),textField_EndTime.getText());
 				System.out.println(filter_Properties);
 			}
 			
@@ -851,6 +865,22 @@ public class Gui_Data {
 						}
 					
 					
+				}
+			}
+			if(Gui_Data.Operand.equals("AND")){
+				if ((Gui_Data.CheckBoxByPhoneID.isSelected())&&(Gui_Data.CheckBoxByTime.isSelected())){
+					filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")&&(Time("+textField_StartTime.getText()+"<data<"+textField_EndTime.getText()+")))";
+					filterp=new FilterObject("","","",textFieldPhoneID.getText(),textField_StartTime.getText(),textField_EndTime.getText());
+					System.out.println("time+id ");
+				}
+				else if((Gui_Data.CheckBoxByPhoneID.isSelected())&&(Gui_Data.CheckboxByLocation.isSelected())){
+					filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")&&(Location("+textField_radios.getText()+"<"+"Distance ("+textField_lat.getText()+","+textField_lon.getText()+"))))";
+					filterp=new FilterObject(textField_radios.getText(),textField_lat.getText(),textField_lon.getText(),textFieldPhoneID.getText(),"","");
+					System.out.println("hhhhhhhhhhhhhhhhhhhh");
+				}
+				else if((Gui_Data.CheckBoxByTime.isSelected())&&(Gui_Data.CheckboxByLocation.isSelected())){
+					filter_Properties="(Time("+textField_StartTime.getText()+"<data<"+textField_EndTime.getText()+")&&(Location("+textField_radios.getText()+"<"+"Distance ("+textField_lat.getText()+","+textField_lon.getText()+"))))";
+					filterp=new FilterObject(textField_radios.getText(),textField_lat.getText(),textField_lon.getText(),"",textField_StartTime.getText(),textField_EndTime.getText());
 				}
 			}
 			filtered=join;
@@ -900,24 +930,10 @@ public class Gui_Data {
 				System.out.println(filter_Properties);
 			}
 		}
-		if(Gui_Data.Operand.equals("AND")){
-			if ((Gui_Data.CheckBoxByPhoneID.isSelected())&&(Gui_Data.CheckBoxByTime.isSelected())){
-				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")&&(Time("+textField_StartTime.getText()+"<data<"+textField_EndTime.getText()+")))";
-				filterp=new FilterObject("","","",textFieldPhoneID.getText(),textField_StartTime.getText(),textField_EndTime.getText());
-				System.out.println("time+id ");
-			}
-			else if((Gui_Data.CheckBoxByPhoneID.isSelected())&&(Gui_Data.CheckboxByLocation.isSelected())){
-				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")&&(Location("+textField_radios.getText()+"<"+"Distance ("+textField_lat.getText()+","+textField_lon.getText()+"))))";
-				filterp=new FilterObject(textField_radios.getText(),textField_lat.getText(),textField_lon.getText(),textFieldPhoneID.getText(),"","");
-			}
-			else if((Gui_Data.CheckBoxByTime.isSelected())&&(Gui_Data.CheckboxByLocation.isSelected())){
-				filter_Properties="(Time("+textField_StartTime.getText()+"<data<"+textField_EndTime.getText()+")&&(Location("+textField_radios.getText()+"<"+"Distance ("+textField_lat.getText()+","+textField_lon.getText()+"))))";
-				filterp=new FilterObject(textField_radios.getText(),textField_lat.getText(),textField_lon.getText(),"",textField_StartTime.getText(),textField_EndTime.getText());
-			}
-		}
+		
 		if(Gui_Data.Operand.equals("NOT")){
 			if(Gui_Data.CheckBoxByPhoneID.isSelected()){
-				filter_Properties="!textFieldPhoneID.getText()";
+				filter_Properties="!"+textFieldPhoneID.getText();
 				filterp=new FilterObject("", "", "", "!"+textFieldPhoneID.getText(), "", "");
 			}
 			else if(Gui_Data.CheckBoxByTime.isSelected()){
