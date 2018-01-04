@@ -505,7 +505,7 @@ public class Gui_Data {
 		btnFilterProperties = new JButton("Filter properties");
 		btnFilterProperties.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					FilterObjectStream.ExportObject(Constant.filename);
+				FilteredFileObjectStream.ExportObject(Constant.filename);
 			}
 		});
 		

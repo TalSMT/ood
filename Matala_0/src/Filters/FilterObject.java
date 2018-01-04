@@ -3,7 +3,11 @@ package Filters;
 import java.io.Serializable;
 
 import javax.swing.JTextField;
-
+/**
+ * This class contains the implementation of the interface, where all relevant variables for export to a text file are changed
+ * @authors Tal and Shaked 
+ *
+ */
 public class FilterObject implements Serializable  {
 	private String latitudeFilter;
 	private String longitudeFilter;

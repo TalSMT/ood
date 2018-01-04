@@ -8,8 +8,12 @@ import javax.swing.JTextField;
 
 import Filters.Condition;
 import Filters.FilterObject;
-
-public class FilterObjectStream {
+/**
+ * This class exports a filtered text file of an object received by the user
+ * @authors Tal and Shaked
+ *
+ */
+public class FilteredFileObjectStream {
 	
 	public static void ExportObject(String filepath){
 		        
