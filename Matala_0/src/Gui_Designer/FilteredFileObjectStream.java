@@ -16,8 +16,6 @@ import Filters.FilterObject;
 public class FilteredFileObjectStream {
 	
 	public static void ExportObject(String filepath){
-		        
-		     //   FilterObject f = new FilterObject(Gui_Data.filterp );
 
 		        // save the object to file
 		        FileOutputStream fos = null;

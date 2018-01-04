@@ -3,6 +3,10 @@ package Filters;
 import Sample_Object.SampleOfWifi;
 
 public class Filter_And implements Condition{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Condition filter1;
 	private Condition filter2;
 

@@ -25,7 +25,7 @@ public class FilterByLocation implements Condition  {
 
 
 	}
-	//	d=גˆ�((x1-x2)2+(y1-y2)2)
+	//	d=׳’ֻ†ן¿½((x1-x2)2+(y1-y2)2)
 	public double radioscalculate(double x, double y){
 		return (Math.sqrt((Math.pow((x-this.latitudeFilter), 2)+(Math.pow((y-this.longitudeFilter), 2)))));
 	}

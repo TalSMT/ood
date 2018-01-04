@@ -9,6 +9,10 @@ import javax.swing.JTextField;
  *
  */
 public class FilterObject implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String latitudeFilter;
 	private String longitudeFilter;
 	private String radiosFilter;
