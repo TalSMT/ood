@@ -12,10 +12,10 @@ public class ThreadMain {
 
     public static void main(String[] args) {
         
-    	MyRunnable t1 = new MyRunnable ("t1");
+    	myRunnable t1 = new myRunnable ("t1");
 
 		Thread t11 = new Thread(t1);
-		Modifications.numOfFilesInInputFolder=3;
+		Modifications.numOfFilesInInputFolder=2;
 		Modifications.lastModifiedNUM=2;
 		
 		t11.start();

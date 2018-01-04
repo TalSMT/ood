@@ -8,12 +8,12 @@ import DataBase.SetDataBase;
 import Gui_Designer.Gui_Data;
 import ReadAndWriteFiles.ReadWigleWifiFiles;
 
-public class MyRunnable implements Runnable{
+public class myRunnable implements Runnable{
 	ActionEvent arg0;
 	String name;
 	File folderOfCsvFiles = new File("C:\\matala\\INPUT");
 
-	MyRunnable(String n)
+	myRunnable(String n)
 	{
 		name = n;
 	}
