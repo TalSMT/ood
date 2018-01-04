@@ -1,5 +1,7 @@
 package Filters;
 
+import java.io.Serializable;
+
 import Sample_Object.SampleOfWifi;
 
 /**
@@ -8,6 +10,6 @@ import Sample_Object.SampleOfWifi;
  * @param <T>
  * @description - This class contains the condition interface that examines the existence or non-compliance of the test
  */
-public interface Condition{
+public interface  Condition extends Serializable{
 	boolean test(SampleOfWifi s);
 }
