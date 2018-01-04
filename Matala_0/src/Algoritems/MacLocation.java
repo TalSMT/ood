@@ -7,7 +7,7 @@ public class MacLocation {
 	
 	
 	
-	 //ôåð÷öéä ùîçùáú îîåöò îùå÷ìì
+	 //פונקציה שמחשבת ממוצע משוקלל
 		public static macSamlpe Calcul_weight_aver(ArrayList<macSamlpe> samp){
 			int Quantsample = samp.size();
 			double [] weight = new double[Quantsample];

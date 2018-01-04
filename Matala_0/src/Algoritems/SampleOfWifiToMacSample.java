@@ -6,7 +6,7 @@ import Sample_Object.macSamlpe;
 
 public class SampleOfWifiToMacSample {
 
-	//äîøú øùéîä ùì ñîôì àåó åééôé 
+	//המרת רשימה של סמפל אוף וייפי 
 		public static ArrayList<macSamlpe> castList(ArrayList<SampleOfWifi> list) {
 			ArrayList<macSamlpe> newList=new ArrayList<>();
 			ArrayList<macSamlpe> allListOfmac=new ArrayList<>();
@@ -29,7 +29,7 @@ public class SampleOfWifiToMacSample {
 		}
 		
 	
-	//äîøä ùì ñîôì àåó åééôé àçã
+	//המרה של סמפל אוף וייפי אחד
 	public static ArrayList<macSamlpe> cast(SampleOfWifi s) {
 		macSamlpe oneSample;
 
