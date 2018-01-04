@@ -46,7 +46,7 @@ public class SetDataBase {
 		
 	}
 	
-	//---------------------------------------------ôéìèøéí------------
+	//---------------------------------------------Ã´Ã©Ã¬Ã¨Ã¸Ã©Ã­------------
 	/**
 	 * filter - A function that receives ArrayList of SampleOfWifi objects and a value to filter and returns ArrayList of filtered objects according to the desired value
 	 * @param list

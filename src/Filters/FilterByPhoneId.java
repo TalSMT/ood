@@ -1,10 +1,15 @@
 package Filters;
 
 import Sample_Object.SampleOfWifi;
-
+/**
+ * 
+ * @authors Tal And Shaked
+ * This class filters by Phone Id
+ *
+ */
 public class FilterByPhoneId implements Condition {
 	private String fhoneIdFilter;
-	
+
 	/**
 	 *
 	 * @param phoneIdFilter
@@ -17,7 +22,6 @@ public class FilterByPhoneId implements Condition {
 
 	@Override
 	public boolean test(SampleOfWifi s) {
-		// TODO Auto-generated method stub
 		return s.getPhoneId().equals(this.fhoneIdFilter);
 	}
 

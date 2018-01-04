@@ -156,15 +156,6 @@ public class ReadWigleWifiFiles {
 	}
 	
 	
-	/**
-	 * getters
-	 * @return
-	 */
-	//public File getFolderOfCsvFiles() {
-	//	return folderOfCsvFiles;
-	//}
-	
-	
 	
 	
 	/**

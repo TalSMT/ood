@@ -82,7 +82,7 @@ public class ExportKML {
 	/**
 	 * writeKMLFile - A function that receives ArrayList of SampleOfWifi and Through the KML library produces KML file with a timeline
 	 * @param listfiltered
-	 * @see : https://developers.google.com/kml/ - KML library-We used this library because it helped us with the ultimate goal of creating a timeline in Google Maps in the simplest wayı
+	 * @see : https://developers.google.com/kml/ - KML library-We used this library because it helped us with the ultimate goal of creating a timeline in Google Maps in the simplest way√µ
 	 */
 
 	public static void  writeKMLFile(ArrayList<SampleOfWifi> listfiltered){
@@ -181,7 +181,6 @@ public class ExportKML {
 				else return false;
 			}
 		};
-
 		ArrayList<SampleOfWifi> filteredStrings = filter(list, condition1);
 	}*/
 		ArrayList <SampleOfWifi> filterList = new ArrayList<SampleOfWifi>();
@@ -216,4 +215,3 @@ public class ExportKML {
 
 
 }
-
