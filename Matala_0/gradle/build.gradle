@@ -1,26 +1,43 @@
-project.task("hello1");
-hello1.description("My first task");
-hello1.group("Demo");
-hello1.doLast( {System.out.println("Hello world?")} );
-hello1.doLast( {System.out.println("Hello world!")} );
+apply plugin: "java"
 
 
-/* Or in the more lenient Groovy syntax: */
-
-task "hello2"
-hello2.description "My second task"
-hello2.group "Demo"
-hello2.doLast {System.out.println("Hello world??")} 
-hello2.doLast {System.out.println("Hello world!!")} 
+/* Try:
+    gradle assemble
+*/
 
 
-/* This is the most common syntax: */
-
-task hello3 {
-    description "My third task"
-    group "Demo"
-    doLast {
-      println "Hello World???"
-      println "Hello World!!!"
-    }
+task write(type: JavaExec) {
+    main = "lesson10.points.WritePoint"
+    classpath = sourceSets.main.runtimeClasspath
 }
+
+task read(type: JavaExec) {
+    dependsOn write
+    main = "lesson10.points.ReadPoint"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task ObjectStreamDemo(type: JavaExec) {
+    dependsOn write
+    main = "lesson10.employees.ObjectStreamDemo"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task hello {
+  doLast({println "hello"})
+}
+
+task copyJar(type: Copy) {
+  from "build/libs"
+  into "experiment"
+  include "*.jar"
+}
+
+task goodbye {
+  doLast({println "goodbye"})
+}
+
+
+build.dependsOn(hello)
+build.finalizedBy(copyJar)
+copyJar.finalizedBy(goodbye)
