@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -547,7 +548,16 @@ public class Gui_Data {
 		btnFilterProperties.setBackground(new Color(0, 0, 0));
 		btnFilterProperties.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FilteredFileObjectStream.ExportObject(Constant.filename);
+				System.out.println("nilhats filtet properyies");
+				try {
+					FilteredFileObjectStream.ExportObject(Constant.filename);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		
@@ -851,7 +861,7 @@ public class Gui_Data {
 				}
 				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Time("+txtInsertStartTime.getText()+"<data<"+txtInsertEndTime.getText()+")))";
 				label_Filter.setText(filter_Properties);
-				//ùåðä
+				//Ã¹Ã¥Ã°Ã¤
 				filterp=new FilterObject("","","",textFieldPhoneID.getText(),txtInsertStartTime.getText(),txtInsertEndTime.getText());
 				System.out.println(filter_Properties);
 			}
@@ -875,7 +885,7 @@ public class Gui_Data {
 				}
 				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				label_Filter.setText(filter_Properties);
-				//ùåðä
+				//Ã¹Ã¥Ã°Ã¤
 				filterp=new FilterObject(txtInsertRadios.getText(),txtInsertLat.getText(),txtInsertLon.getText(),textFieldPhoneID.getText(),"","");
 				System.out.println(filter_Properties);
 			}
@@ -899,7 +909,7 @@ public class Gui_Data {
 				}
 				filter_Properties="(Time("+txtInsertStartTime.getText()+"<data<"+txtInsertEndTime.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				label_Filter.setText(filter_Properties);
-				//ùåðä
+				//Ã¹Ã¥Ã°Ã¤
 				filterp=new FilterObject(txtInsertRadios.getText(),txtInsertRadios.getText(),txtInsertLon.getText(),"",txtInsertStartTime.getText(),txtInsertEndTime.getText());
 				System.out.println(filter_Properties);
 			}
