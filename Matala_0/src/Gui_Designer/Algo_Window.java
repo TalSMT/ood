@@ -78,7 +78,7 @@ public class Algo_Window {
 		desktopPane.add(layeredPane);
 		//-------------------------------------------call algo 1-------------------------------------
 
-		JButton btn_CallAlgo1 = new JButton("Mac");
+		JButton btn_CallAlgo1 = new JButton("FInd Mac Location");
 		btn_CallAlgo1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!txtMac.getText().isEmpty()){
@@ -113,7 +113,7 @@ public class Algo_Window {
 		layeredPane.add(label_macLocation);
 		//-------------------------------------------call algo 2-------------------------------------
 
-		JButton btnSubmit = new JButton("submit");
+		JButton btnSubmit = new JButton("Find Sampler Location");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 if ((!txtInsrertMac1.getText().isEmpty())&&(!txtInsrertMac2.getText().isEmpty())&&(!txtInsrertMac3.getText().isEmpty())&&(!txtInsrertSignal1.getText().isEmpty())&&(!txtInsrertSignal2.getText().isEmpty())&&(!txtInsrertSignal3.getText().isEmpty())){
@@ -154,7 +154,7 @@ if ((!txtInsrertMac1.getText().isEmpty())&&(!txtInsrertMac2.getText().isEmpty())
 		});
 		btnSubmit.setForeground(Color.CYAN);
 		btnSubmit.setBackground(Color.BLACK);
-		btnSubmit.setBounds(654, 461, 103, 46);
+		btnSubmit.setBounds(654, 461, 246, 46);
 		layeredPane.add(btnSubmit);
 		
 		txtInsrertMac1 = new JTextField();

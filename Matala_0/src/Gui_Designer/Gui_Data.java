@@ -56,6 +56,7 @@ import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import javax.swing.JDesktopPane;
+import javax.swing.JLayeredPane;
 public class Gui_Data {
 
 	public String getInputFoldePath() {
@@ -102,7 +103,6 @@ public class Gui_Data {
 	public static CallToAlgo1 algo1;
 	public static JTextField textField;
 	public static JTextField textField_1;
-	public static JTextField textField_2;
 	public static JTextField textField_3;
 	public static CallToAlgo2 algo2;
 	public static macSamlpe mac1;
@@ -117,6 +117,9 @@ public class Gui_Data {
 	private JButton btnSql;
 	private JButton btnFilter;
 	private JButton btnAlgorithms;
+	private JDesktopPane desktopPane_1;
+	private JLayeredPane layeredPane;
+	private JLayeredPane layeredPane_1;
 		
 	
 	/**
@@ -155,13 +158,165 @@ public class Gui_Data {
 		//frame.imageUpdate(image1, 0, 0, 0, 0, 0);
 		frame.setBounds(100, 100, 1225, 1072);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//if((OutputfoldePath!="")&&(combPath==""))
+		System.out.println("kffffffffffffffffffffffffffffffffffff");
+		
+		textField = new JTextField();
+		textField.setText("insrert mac1");
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("insrert signal1");
+		textField_1.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("insrert signal2");
+		textField_3.setColumns(10);
+		
+		lblFilter = new JLabel("Filter:");
+		lblFilter.setForeground(new Color(0, 255, 255));
+		lblFilter.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		
+		desktopPane_1 = new JDesktopPane();
+		
+		layeredPane_1 = new JLayeredPane();
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(995)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(212)
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(17)
+					.addComponent(layeredPane_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(262)
+					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 936, Short.MAX_VALUE)
+					.addComponent(lblFilter, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+					.addGap(133))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(36)
+					.addComponent(desktopPane_1, GroupLayout.PREFERRED_SIZE, 1132, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(233, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(125)
+					.addComponent(desktopPane_1, GroupLayout.PREFERRED_SIZE, 1079, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(130)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFilter, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(17)
+									.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(778))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(108)
+							.addComponent(layeredPane_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+		);
+		layeredPane_1.setLayout(null);
+		
+		layeredPane = new JLayeredPane();
+		layeredPane.setBounds(45, 564, 963, -543);
+		desktopPane_1.add(layeredPane);
+		layeredPane.setLayout(null);
+		
+		btnAlgorithms = new JButton("Algorithms");
+		btnAlgorithms.setBounds(216, 520, 146, 35);
+		desktopPane_1.add(btnAlgorithms);
+		btnAlgorithms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Algo_Window algw= new Algo_Window();
+				algw.createAlgoWindow();
+			}
+		});
+		btnAlgorithms.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		
+		label_Filter = new JLabel("___________________________________________________________________________________________________");
+		label_Filter.setBounds(310, 489, 446, 18);
+		desktopPane_1.add(label_Filter);
+		label_Filter.setForeground(new Color(0, 255, 255));
+		label_Filter.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		btnSql = new JButton("SQL");
+		btnSql.setBounds(524, 566, 61, 29);
+		desktopPane_1.add(btnSql);
+		
+		JLabel lblNumberOfDiff = new JLabel("number of different \r\nwifi networks");
+		lblNumberOfDiff.setBounds(55, 453, 246, 33);
+		desktopPane_1.add(lblNumberOfDiff);
+		lblNumberOfDiff.setForeground(new Color(0, 255, 255));
+		lblNumberOfDiff.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		JLabel lblNumberOfRecords = new JLabel("Number of records");
+		lblNumberOfRecords.setBounds(45, 417, 155, 18);
+		desktopPane_1.add(lblNumberOfRecords);
+		lblNumberOfRecords.setForeground(new Color(0, 255, 255));
+		lblNumberOfRecords.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		AnsNumOfNetworks = new JLabel("0");
+		AnsNumOfNetworks.setBounds(329, 455, 155, 18);
+		desktopPane_1.add(AnsNumOfNetworks);
+		AnsNumOfNetworks.setForeground(new Color(0, 255, 255));
+		AnsNumOfNetworks.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		
+		AnsNumberOfRecords = new JLabel("0");
+		AnsNumberOfRecords.setBounds(207, 417, 155, 18);
+		desktopPane_1.add(AnsNumberOfRecords);
+		AnsNumberOfRecords.setForeground(new Color(0, 255, 255));
+		AnsNumberOfRecords.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
+		//----------------------------Undo Filter-------------------------
+		JButton btnUndoFilter = new JButton("Undo Filter ");
+		btnUndoFilter.setBounds(485, 428, 149, 29);
+		desktopPane_1.add(btnUndoFilter);
+		btnUndoFilter.setForeground(new Color(0, 255, 255));
+		btnUndoFilter.setBackground(new Color(0, 0, 0));
+		
+		btnFilter = new JButton("Filter");
+		btnFilter.setBounds(663, 423, 75, 35);
+		desktopPane_1.add(btnFilter);
+		btnFilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Filter_Window fltw= new Filter_Window();
+				fltw.createFilterWindow();
+			}
+		});
+		btnFilter.setFont(new Font("Segoe UI", Font.PLAIN, 19));
 		
 		JLabel lblInsertPackagePath = new JLabel("Insert Input package path");
+		lblInsertPackagePath.setBounds(26, 37, 185, 19);
+		desktopPane_1.add(lblInsertPackagePath);
 		lblInsertPackagePath.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		lblInsertPackagePath.setForeground(new Color(0, 255, 255));
+		//----------------------------------------------folder output path text field------------------------------------
+		JLabel lblInsertOutputPackage = new JLabel("Insert output package path");
+		lblInsertOutputPackage.setBounds(26, 78, 185, 18);
+		desktopPane_1.add(lblInsertOutputPackage);
+		lblInsertOutputPackage.setForeground(new Color(0, 255, 255));
+		lblInsertOutputPackage.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		
 		//----------------------------------------------folder path input text field------------------------------------
 		folderPathInput_textField = new JTextField();
+		folderPathInput_textField.setBounds(223, 37, 673, 26);
+		desktopPane_1.add(folderPathInput_textField);
 		folderPathInput_textField.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent arg0) {
 				InputfoldePath=folderPathInput_textField.getText();
@@ -172,7 +327,20 @@ public class Gui_Data {
 		
 		//----------------------------------------------ok button for read folder with wigle csv files---------------------
 		folderPathInput_textField.setColumns(10);
+		
+		folderPathOutput_textField = new JTextField();
+		folderPathOutput_textField.setBounds(223, 78, 673, 26);
+		desktopPane_1.add(folderPathOutput_textField);
+		folderPathOutput_textField.addCaretListener(new CaretListener() {
+			public void caretUpdate(CaretEvent e) {
+				OutputfoldePath=folderPathOutput_textField.getText();
+				OutputfoldePathForKML=folderPathOutput_textField.getText();
+			}
+		});
+		folderPathOutput_textField.setColumns(10);
 		JButton btnReadFiles = new JButton("read files");
+		btnReadFiles.setBounds(943, 58, 151, 29);
+		desktopPane_1.add(btnReadFiles);
 		btnReadFiles.setBackground(new Color(0, 0, 0));
 		btnReadFiles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -202,77 +370,11 @@ public class Gui_Data {
 		});
 		
 		btnReadFiles.setForeground(new Color(0, 255, 255));
-		//----------------------------------------------folder output path text field------------------------------------
-		JLabel lblInsertOutputPackage = new JLabel("Insert output package path");
-		lblInsertOutputPackage.setForeground(new Color(0, 255, 255));
-		lblInsertOutputPackage.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
-		
-		folderPathOutput_textField = new JTextField();
-		folderPathOutput_textField.addCaretListener(new CaretListener() {
-			public void caretUpdate(CaretEvent e) {
-				OutputfoldePath=folderPathOutput_textField.getText();
-				OutputfoldePathForKML=folderPathOutput_textField.getText();
-			}
-		});
-		folderPathOutput_textField.setColumns(10);
-		
-		//----------------------------------------------comb csv input path text field------------------------------------
-
-		JLabel lblInsertCombCsv = new JLabel("Insert comb csv path");
-		lblInsertCombCsv.setForeground(new Color(0, 255, 255));
-		lblInsertCombCsv.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
-		
-		combPath_textField = new JTextField();
-		//if((OutputfoldePath!="")&&(combPath==""))
-		System.out.println("kffffffffffffffffffffffffffffffffffff");
-
-		
-		combPath_textField.addCaretListener(new CaretListener() {
-			
-			//------------------------------------------------------------------------------------
-			public void caretUpdate(CaretEvent e) {
-				combPath=combPath_textField.getText();
-				
-			}
-		});
-		combPath_textField.setColumns(10);
-		
-		
-		//----------------------------------------------ok button for read comb---------------------
-		JButton btnOkcsvCOMB = new JButton("read comb");
-		btnOkcsvCOMB.setBackground(new Color(0, 0, 0));
-		btnOkcsvCOMB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (combPath!="")
-				{
-					combData=ReadCombCsv.readCsvCombwithHeaders(combPath);
-					Constant.setCsvCombPath(combPath);
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					AnsNumberOfRecords.setText(""+combData.size());
-					AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
-				}
-
-				
-			}
-		});
-		btnOkcsvCOMB.setForeground(new Color(0, 255, 255));
-		
-		//---------------------------------delete database button --------------------------------------------
-		JButton btnDeleteDatabase = new JButton("delete database");
-		btnDeleteDatabase.setForeground(new Color(0, 255, 255));
-		btnDeleteDatabase.setBackground(new Color(0, 0, 0));
-		btnDeleteDatabase.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				deletedHeader=true;
-				combData=SetDataBase.deleteCombData(combData);
-				AnsNumberOfRecords.setText(""+combData.size());
-				AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
-
-			}
-		});
 		
 		//----------------------------export comb csv--------------------------------------------------------------
 		JButton btnbtnOkInputPath = new JButton("create comb");
+		btnbtnOkInputPath.setBounds(911, 96, 183, 29);
+		desktopPane_1.add(btnbtnOkInputPath);
 		btnbtnOkInputPath.setBackground(new Color(0, 0, 0));
 		btnbtnOkInputPath.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -288,60 +390,100 @@ public class Gui_Data {
 		});
 		btnbtnOkInputPath.setForeground(new Color(0, 255, 255));
 		
-		JButton buttonExportKML = new JButton("export KML");
-		buttonExportKML.setBackground(new Color(0, 0, 0));
-		buttonExportKML.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		//----------------------------------------------comb csv input path text field------------------------------------
+
+		JLabel lblInsertCombCsv = new JLabel("Insert comb csv path");
+		lblInsertCombCsv.setBounds(15, 196, 185, 18);
+		desktopPane_1.add(lblInsertCombCsv);
+		lblInsertCombCsv.setForeground(new Color(0, 255, 255));
+		lblInsertCombCsv.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
+		
+		combPath_textField = new JTextField();
+		combPath_textField.setBounds(218, 192, 519, 26);
+		desktopPane_1.add(combPath_textField);
+		
 				
-				//if(!combData.isEmpty())
-					ExportKML.writeKMLFile(combData);
-			}
-		});
-		buttonExportKML.setForeground(new Color(0, 255, 255));
-		
-		JLabel lblNumberOfRecords = new JLabel("Number of records");
-		lblNumberOfRecords.setForeground(new Color(0, 255, 255));
-		lblNumberOfRecords.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
-		
-		AnsNumberOfRecords = new JLabel("0");
-		AnsNumberOfRecords.setForeground(new Color(0, 255, 255));
-		AnsNumberOfRecords.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
-		
-		JLabel lblNumberOfDiff = new JLabel("number of different \r\nwifi networks");
-		lblNumberOfDiff.setForeground(new Color(0, 255, 255));
-		lblNumberOfDiff.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
-		
-		AnsNumOfNetworks = new JLabel("0");
-		AnsNumOfNetworks.setForeground(new Color(0, 255, 255));
-		AnsNumOfNetworks.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
-		
-		textField = new JTextField();
-		textField.setText("insrert mac1");
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("insrert signal1");
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setText("insrert mac2");
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setText("insrert signal2");
-		textField_3.setColumns(10);
-		
-		lblFilter = new JLabel("Filter:");
-		lblFilter.setForeground(new Color(0, 255, 255));
-		lblFilter.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
-		
-		label_Filter = new JLabel("___________________________________________________________________________________________________");
-		label_Filter.setForeground(new Color(0, 255, 255));
-		label_Filter.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
-		//----------------------------Undo Filter-------------------------
-		JButton btnUndoFilter = new JButton("Undo Filter ");
-		btnUndoFilter.setForeground(new Color(0, 255, 255));
-		btnUndoFilter.setBackground(new Color(0, 0, 0));
+				combPath_textField.addCaretListener(new CaretListener() {
+					
+					//------------------------------------------------------------------------------------
+					public void caretUpdate(CaretEvent e) {
+						combPath=combPath_textField.getText();
+						
+					}
+				});
+				combPath_textField.setColumns(10);
+				
+				
+				//----------------------------------------------ok button for read comb---------------------
+				JButton btnOkcsvCOMB = new JButton("read comb");
+				btnOkcsvCOMB.setBounds(810, 191, 350, 29);
+				desktopPane_1.add(btnOkcsvCOMB);
+				btnOkcsvCOMB.setBackground(new Color(0, 0, 0));
+				btnOkcsvCOMB.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (combPath!="")
+						{
+							combData=ReadCombCsv.readCsvCombwithHeaders(combPath);
+							Constant.setCsvCombPath(combPath);
+							///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							AnsNumberOfRecords.setText(""+combData.size());
+							AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
+						}
+
+						
+					}
+				});
+				btnOkcsvCOMB.setForeground(new Color(0, 255, 255));
+				
+				//---------------------------------delete database button --------------------------------------------
+				JButton btnDeleteDatabase = new JButton("delete database");
+				btnDeleteDatabase.setBounds(32, 247, 141, 29);
+				desktopPane_1.add(btnDeleteDatabase);
+				btnDeleteDatabase.setForeground(new Color(0, 255, 255));
+				btnDeleteDatabase.setBackground(new Color(0, 0, 0));
+				
+				//-----------------update csvfiles ----------------------------------
+				JButton btnUpdateDatabase = new JButton("update database");
+				btnUpdateDatabase.setBounds(224, 247, 125, 29);
+				desktopPane_1.add(btnUpdateDatabase);
+				btnUpdateDatabase.setForeground(new Color(0, 255, 255));
+				btnUpdateDatabase.setBackground(new Color(0, 0, 0));
+				
+				JButton buttonExportKML = new JButton("export KML");
+				buttonExportKML.setBounds(378, 247, 183, 29);
+				desktopPane_1.add(buttonExportKML);
+				buttonExportKML.setBackground(new Color(0, 0, 0));
+				buttonExportKML.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						//if(!combData.isEmpty())
+							ExportKML.writeKMLFile(combData);
+					}
+				});
+				buttonExportKML.setForeground(new Color(0, 255, 255));
+				btnUpdateDatabase.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							
+							deletedHeader=false;
+							WriteCombCsv.writeCsvFile(combData);
+							AnsNumberOfRecords.setText(""+combData.size());
+							AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+				btnDeleteDatabase.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						deletedHeader=true;
+						combData=SetDataBase.deleteCombData(combData);
+						AnsNumberOfRecords.setText(""+combData.size());
+						AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(combData));
+
+					}
+				});
 		btnUndoFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				combData= processedCsvFile;
@@ -349,8 +491,6 @@ public class Gui_Data {
 				Gui_Data.AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(Gui_Data.combData));
 			}
 		});
-		
-		btnSql = new JButton("SQL");
 		btnSql.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -358,170 +498,6 @@ public class Gui_Data {
 				sqWind.createSQL_Window();
 			}
 		});
-		
-		JDesktopPane desktopPane = new JDesktopPane();
-		
-		btnFilter = new JButton("Filter");
-		btnFilter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Filter_Window fltw= new Filter_Window();
-				fltw.createFilterWindow();
-			}
-		});
-		btnFilter.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		
-		btnAlgorithms = new JButton("Algorithms");
-		btnAlgorithms.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Algo_Window algw= new Algo_Window();
-				algw.createAlgoWindow();
-			}
-		});
-		btnAlgorithms.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(215)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(17)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(lblInsertPackagePath, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
-													.addGap(24)
-													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-														.addComponent(folderPathOutput_textField)
-														.addComponent(folderPathInput_textField, GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addGroup(groupLayout.createSequentialGroup()
-															.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-															.addPreferredGap(ComponentPlacement.RELATED)
-															.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
-														.addGroup(groupLayout.createSequentialGroup()
-															.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
-															.addPreferredGap(ComponentPlacement.RELATED)
-															.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
-													.addGap(262)
-													.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-														.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-															.addComponent(label_Filter, GroupLayout.PREFERRED_SIZE, 446, GroupLayout.PREFERRED_SIZE)
-															.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE))
-														.addGroup(groupLayout.createSequentialGroup()
-															.addComponent(btnUndoFilter, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-															.addGap(33)
-															.addComponent(btnFilter)
-															.addGap(45))))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-													.addGap(18)
-													.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
-													.addGap(73)
-													.addComponent(btnOkcsvCOMB, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-													.addGap(24))))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(331)
-											.addComponent(btnAlgorithms, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED, 536, Short.MAX_VALUE)
-											.addComponent(btnSql)
-											.addGap(61)))
-									.addGap(82))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(937)
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(btnReadFiles, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnbtnOkInputPath, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))))
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(lblFilter, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(34)
-							.addComponent(btnDeleteDatabase)
-							.addGap(205)
-							.addComponent(buttonExportKML, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)))
-					.addGap(133))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(19)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblInsertPackagePath)
-								.addComponent(folderPathInput_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(37)
-							.addComponent(btnReadFiles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(15)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblInsertOutputPackage, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-								.addComponent(folderPathOutput_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(btnbtnOkInputPath, Alignment.TRAILING))
-					.addGap(42)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblInsertCombCsv, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-						.addComponent(combPath_textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOkcsvCOMB))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(27)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnDeleteDatabase)
-								.addComponent(buttonExportKML))
-							.addGap(35)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-								.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-								.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-							.addGap(75)
-							.addComponent(btnAlgorithms, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(89)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnFilter)
-								.addComponent(btnUndoFilter))
-							.addGap(6)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblFilter, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(17)
-									.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)))
-							.addGap(40)
-							.addComponent(label_Filter, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnSql)))
-					.addGap(655)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(778)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 	
