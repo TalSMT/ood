@@ -549,7 +549,7 @@ public class Gui_Data {
 		btnFilterProperties.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FilteredFileObjectStream.ExportObject(Constant.filename);
-				//JOptionPane.showMessageDialog(null,filter_Properties );
+				JOptionPane.showMessageDialog(null,filter_Properties );
 			}
 		});
 		

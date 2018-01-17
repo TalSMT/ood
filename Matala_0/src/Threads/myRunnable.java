@@ -42,6 +42,7 @@ public class myRunnable implements Runnable{
 							Gui_Data.combData = ReadWigleWifiFiles.readCsvFile(folderOfCsvFiles);
 							Gui_Data.AnsNumberOfRecords.setText(""+Gui_Data.combData.size());
 							Gui_Data.AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(Gui_Data.combData));
+							
 						}
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
@@ -50,13 +51,6 @@ public class myRunnable implements Runnable{
 
 
 				}
-				
-				//Gui_Data.updateInfo ();
-				//change the Database infomation window
-				//Gui_Data.AnsNumberOfRecords.setText(""+Gui_Data.combData.size());
-				
-				
-				
 				
 				
 
