@@ -138,6 +138,7 @@ public class Gui_Data {
 	private JButton btnFilterProperties;
 	private JLabel lblFilter;
 	public static JLabel label_Filter;
+	private JButton btnSql;
 		
 	
 	/**
@@ -548,6 +549,7 @@ public class Gui_Data {
 		btnFilterProperties.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FilteredFileObjectStream.ExportObject(Constant.filename);
+				
 			}
 		});
 		
@@ -567,6 +569,15 @@ public class Gui_Data {
 				combData= processedCsvFile;
 				Gui_Data.AnsNumberOfRecords.setText(""+Gui_Data.combData.size());
 				Gui_Data.AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(Gui_Data.combData));
+			}
+		});
+		
+		btnSql = new JButton("SQL");
+		btnSql.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				SQL_window sqWind= new SQL_window();
+				sqWind.createSQL_Window();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -694,11 +705,15 @@ public class Gui_Data {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(98)
 							.addComponent(label_Filter, GroupLayout.PREFERRED_SIZE, 446, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(1397, Short.MAX_VALUE))
+					.addContainerGap(1142, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(626)
 					.addComponent(btnFilterProperties, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(1724, Short.MAX_VALUE))
+					.addContainerGap(1469, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(752)
+					.addComponent(btnSql)
+					.addContainerGap(1427, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -813,7 +828,9 @@ public class Gui_Data {
 										.addComponent(lblFilter, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 										.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE))
 									.addGap(106)))))
-					.addGap(434)
+					.addGap(72)
+					.addComponent(btnSql)
+					.addGap(333)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -851,7 +868,7 @@ public class Gui_Data {
 				}
 				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Time("+txtInsertStartTime.getText()+"<data<"+txtInsertEndTime.getText()+")))";
 				label_Filter.setText(filter_Properties);
-				//ùåðä
+				//щерд
 				filterp=new FilterObject("","","",textFieldPhoneID.getText(),txtInsertStartTime.getText(),txtInsertEndTime.getText());
 				System.out.println(filter_Properties);
 			}
@@ -875,7 +892,7 @@ public class Gui_Data {
 				}
 				filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				label_Filter.setText(filter_Properties);
-				//ùåðä
+				//щерд
 				filterp=new FilterObject(txtInsertRadios.getText(),txtInsertLat.getText(),txtInsertLon.getText(),textFieldPhoneID.getText(),"","");
 				System.out.println(filter_Properties);
 			}
@@ -899,7 +916,7 @@ public class Gui_Data {
 				}
 				filter_Properties="(Time("+txtInsertStartTime.getText()+"<data<"+txtInsertEndTime.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				label_Filter.setText(filter_Properties);
-				//ùåðä
+				//щерд
 				filterp=new FilterObject(txtInsertRadios.getText(),txtInsertRadios.getText(),txtInsertLon.getText(),"",txtInsertStartTime.getText(),txtInsertEndTime.getText());
 				System.out.println(filter_Properties);
 			}
