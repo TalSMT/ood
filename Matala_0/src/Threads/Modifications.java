@@ -13,7 +13,7 @@ public class Modifications {
 	public static int numOfFilesInInputFolder;
 	public static long lastModifiedNUM;
 	public static File file1=new File ("C:\\matala\\INPUT\\AVAVAV.csv");
-	
+	//-----------------------------------------------------------wigle wifi files--------------------------------------------------------------
 	/**
 	 * This function return if there was a change in a given file
 	 * @see https://www.mkyong.com/java/how-to-get-the-file-last-modified-date-in-java/
@@ -57,6 +57,13 @@ public class Modifications {
 		System.out.println(arrayOfCsvFiles.length);
 		return arrayOfCsvFiles.length;
 	}
+	//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	//----------------------------------------------------------------SQL----------------------------------------------------------------------------------------
+	
+	
+	
+	
 	
 	
 	

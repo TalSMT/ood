@@ -443,7 +443,7 @@ public class Gui_Data {
 		});
 		
 		txtMac = new JTextField();
-		txtMac.setText("Insert Mac or comb csv");
+		txtMac.setText("Insert Mac");
 		txtMac.setColumns(10);
 		
 		label_macLocation = new JLabel("___");
@@ -549,7 +549,7 @@ public class Gui_Data {
 		btnFilterProperties.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FilteredFileObjectStream.ExportObject(Constant.filename);
-				
+				//JOptionPane.showMessageDialog(null,filter_Properties );
 			}
 		});
 		
@@ -620,18 +620,9 @@ public class Gui_Data {
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(lblNumberOfDiff, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
-												.addGroup(groupLayout.createSequentialGroup()
 													.addComponent(lblNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
 													.addComponent(AnsNumberOfRecords, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGap(37)
-													.addComponent(btn_CallAlgo1, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-													.addGap(18)
-													.addComponent(txtMac, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
 												.addGroup(groupLayout.createSequentialGroup()
 													.addGap(60)
 													.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
@@ -648,7 +639,17 @@ public class Gui_Data {
 														.addGroup(groupLayout.createSequentialGroup()
 															.addComponent(txtInsrertMac3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
 															.addGap(18)
-															.addComponent(txtInsrertSignal3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)))))
+															.addComponent(txtInsrertSignal3, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))))
+												.addGroup(groupLayout.createSequentialGroup()
+													.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+														.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+															.addGap(37)
+															.addComponent(btn_CallAlgo1, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+															.addGap(18)
+															.addComponent(txtMac, 0, 0, Short.MAX_VALUE))
+														.addComponent(lblNumberOfDiff, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE))
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addComponent(AnsNumOfNetworks, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
 													.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -713,7 +714,7 @@ public class Gui_Data {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(752)
 					.addComponent(btnSql)
-					.addContainerGap(1427, Short.MAX_VALUE))
+					.addContainerGap(1481, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

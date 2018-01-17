@@ -9,6 +9,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Sql.MySql;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,12 +19,10 @@ import java.awt.event.ActionEvent;
 public class SQL_window {
 
 	public static JFrame frame;
-	private JTextField txtInsertIp;
-	private JTextField txtInsertUrl;
-	private JTextField txtInsertPassword;
-	private JTextField txtInsertPort;
-	private JTextField txtInsertDatabase;
-	private JTextField txtInsertTable;
+	public static JTextField txtInsertIp;
+	public  static JTextField txtInsertUrl;
+	public  static JTextField txtInsertPassword;
+	public static JTextField txtInsertDatabase;
 	/**
 	 * Launch the application.
 	 */
@@ -59,50 +60,62 @@ public class SQL_window {
 		frame.getContentPane().add(layeredPane);
 		
 		txtInsertIp = new JTextField();
-		txtInsertIp.setText("insert IP");
-		txtInsertIp.setBounds(74, 50, 146, 26);
+		txtInsertIp.setText("5.29.193.52");
+		txtInsertIp.setBounds(198, 46, 146, 26);
 		layeredPane.add(txtInsertIp);
 		txtInsertIp.setColumns(10);
 		
 		txtInsertUrl = new JTextField();
-		txtInsertUrl.setText("insert user");
+		txtInsertUrl.setText("oop1");
 		txtInsertUrl.setColumns(10);
-		txtInsertUrl.setBounds(74, 92, 146, 26);
+		txtInsertUrl.setBounds(198, 141, 146, 26);
 		layeredPane.add(txtInsertUrl);
 		
 		txtInsertPassword = new JTextField();
-		txtInsertPassword.setText("insert password");
+		txtInsertPassword.setText("Lambda1();");
 		txtInsertPassword.setColumns(10);
-		txtInsertPassword.setBounds(74, 134, 146, 26);
+		txtInsertPassword.setBounds(198, 197, 146, 26);
 		layeredPane.add(txtInsertPassword);
 		
-		txtInsertPort = new JTextField();
-		txtInsertPort.setText("insert port");
-		txtInsertPort.setColumns(10);
-		txtInsertPort.setBounds(74, 176, 146, 26);
-		layeredPane.add(txtInsertPort);
-		
 		txtInsertDatabase = new JTextField();
-		txtInsertDatabase.setText("insert database");
+		txtInsertDatabase.setText("jdbc:mysql://5.29.193.52:3306/oop_course_ariel");
 		txtInsertDatabase.setColumns(10);
-		txtInsertDatabase.setBounds(74, 218, 146, 26);
+		txtInsertDatabase.setBounds(202, 95, 370, 26);
 		layeredPane.add(txtInsertDatabase);
-		
-		txtInsertTable = new JTextField();
-		txtInsertTable.setText("insert table");
-		txtInsertTable.setColumns(10);
-		txtInsertTable.setBounds(74, 259, 146, 26);
-		layeredPane.add(txtInsertTable);
 		
 		JButton btnConnect = new JButton("connect");
 		btnConnect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				////////////////////////////////////////////////////////////////////////////////
+				if ((txtInsertIp.getText()!="")&&(txtInsertUrl.getText()!="")&&(txtInsertPassword.getText()!="")&&(txtInsertDatabase.getText()!=""))
+				{
+					frame.dispose();
+					Gui_Data.combData=MySql.sqlManage(Gui_Data.combData,txtInsertIp.getText(), txtInsertUrl.getText(), txtInsertPassword.getText(), txtInsertDatabase.getText());
+				}
+				
+				
 				////////////////////////////////////////////////////////////////////////////////////////////
-				frame.dispose();
+				
 
 			}
 		});
-		btnConnect.setBounds(318, 145, 115, 29);
+		btnConnect.setBounds(619, 134, 115, 29);
 		layeredPane.add(btnConnect);
+		
+		JLabel lblNewLabel = new JLabel("IP");
+		lblNewLabel.setBounds(81, 49, 69, 20);
+		layeredPane.add(lblNewLabel);
+		
+		JLabel lblUrl = new JLabel("URL");
+		lblUrl.setBounds(81, 98, 69, 20);
+		layeredPane.add(lblUrl);
+		
+		JLabel lblUser = new JLabel("USER");
+		lblUser.setBounds(81, 144, 69, 20);
+		layeredPane.add(lblUser);
+		
+		JLabel lblPassword = new JLabel("PASSWORD");
+		lblPassword.setBounds(83, 200, 85, 20);
+		layeredPane.add(lblPassword);
 	}
 }
