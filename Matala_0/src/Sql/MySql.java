@@ -1,24 +1,16 @@
 package Sql;
 
 import java.sql.PreparedStatement;
-
 import java.sql.Connection;
-
 import java.sql.DriverManager;
-
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.logging.Level;
-
 import java.util.logging.Logger;
-
 import Sample_Object.SampleOfWifi;
 import Sample_Object.WifiPoint;
-
 import java.sql.Statement;
 
 
@@ -87,43 +79,45 @@ public class MySql {
              if (rs.next()) {
 
                  System.out.println("**** Update: "+rs.getString(1));
-
+                 return rs.getString(1);
              }
 
-             PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
+      //       PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
 
-             rs = pst.executeQuery();
+       //      rs = pst.executeQuery();
 
 
          } catch (SQLException ex) {
+//
+//             Logger lgr = Logger.getLogger(MySql.class.getName());
+//
+//             lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        	 System.out.println("no connection");
 
-             Logger lgr = Logger.getLogger(MySql.class.getName());
-
-             lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-         } finally {
-
-             try {
-
-                 if (rs != null) {rs.close();}
-
-                 if (st != null) { st.close(); }
-
-                 if (_con != null) { _con.close();  }
-
-             } catch (SQLException ex) {
-
-                 
-
-                 Logger lgr = Logger.getLogger(MySql.class.getName());
-
-                 lgr.log(Level.WARNING, ex.getMessage(), ex);
-
-             }
-
-    
-    }
-         return rs.toString();
+         } 
+         //       	 finally {
+//
+//             try {
+//
+//                 if (rs != null) {rs.close();}
+//
+//                 if (st != null) { st.close(); }
+//
+//                 if (_con != null) { _con.close();  }
+//
+//             } catch (SQLException ex) {
+//
+//                 
+//
+//                 Logger lgr = Logger.getLogger(MySql.class.getName());
+//
+//                 lgr.log(Level.WARNING, ex.getMessage(), ex);
+//
+//             }
+//
+//    
+//    }
+         return null;
 
     }
     
@@ -146,11 +140,12 @@ public class MySql {
         	System.out.println(_user);
         	System.out.println(_password);
 
-            _con = DriverManager.getConnection(_url, _user, _password);
+            _con = DriverManager.getConnection("3306/oop_course_ariel","oop1","Lambda1();");
 
             st = _con.createStatement();
 
-            rs = st.executeQuery("SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
+          //  rs = st.executeQuery("SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
+            rs=st.executeQuery("SELECT * FROM ex4_db");
             if (rs.next()) {
 
                 System.out.println("**** Update: "+rs.getString(1));
@@ -159,9 +154,9 @@ public class MySql {
 
            
 
-            PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
+           // PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
 
-            rs = pst.executeQuery();
+         //   rs = pst.executeQuery();
 
             
 
@@ -227,7 +222,6 @@ public class MySql {
             }
 
         }
-    	System.out.println(listSampOfWifi.get(4).getPhoneId());
 
         System.out.println("done!!!!!");
 

@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/jaxb-impl-2.1.17.jar"/>
 	<classpathentry kind="lib" path="lib/jsr173_api-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Tal/Desktop/mysql-connector-java-5.1.45-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
