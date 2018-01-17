@@ -38,6 +38,7 @@ public class MySql {
 	  
 	  private static Connection _con = null;
 
+	  
     public static ArrayList<SampleOfWifi> sqlManage (ArrayList<SampleOfWifi> oldDatabase , String ip,String url,String user,String password)
     {
     	_ip=ip;
@@ -70,7 +71,62 @@ public class MySql {
     }
     
     
+    public static String modificationTime() 
+    {
+    	 Statement st = null;
+         ResultSet rs = null;
+         
+         
+         try {     
+
+      
+             _con = DriverManager.getConnection(_url, _user, _password);
+
+             st = _con.createStatement();
+
+             rs = st.executeQuery("SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
+             if (rs.next()) {
+
+                 System.out.println("**** Update: "+rs.getString(1));
+
+             }
+
+             PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
+
+             rs = pst.executeQuery();
+
+
+         } catch (SQLException ex) {
+
+             Logger lgr = Logger.getLogger(MySql.class.getName());
+
+             lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+         } finally {
+
+             try {
+
+                 if (rs != null) {rs.close();}
+
+                 if (st != null) { st.close(); }
+
+                 if (_con != null) { _con.close();  }
+
+             } catch (SQLException ex) {
+
+                 
+
+                 Logger lgr = Logger.getLogger(MySql.class.getName());
+
+                 lgr.log(Level.WARNING, ex.getMessage(), ex);
+
+             }
+
     
+    }
+         return rs.toString();
+
+    }
     
 
     public static ArrayList<SampleOfWifi> readSqlTable() {

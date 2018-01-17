@@ -4,15 +4,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 
+import Sql.MySql;
+
 public class Modifications {
 
 	public Modifications() {
 		// TODO Auto-generated constructor stub
 	}
-
+	//_________________CSV________________________
 	public static int numOfFilesInInputFolder;
 	public static long lastModifiedNUM;
 	public static File file1=new File ("C:\\matala\\INPUT\\AVAVAV.csv");
+	//___________________SQL______________________
+	public static String lastModifiedSQL="";
+
 	//-----------------------------------------------------------wigle wifi files--------------------------------------------------------------
 	/**
 	 * This function return if there was a change in a given file
@@ -62,7 +67,17 @@ public class Modifications {
 	//----------------------------------------------------------------SQL----------------------------------------------------------------------------------------
 	
 	
-	
+	public static boolean SQLChanged()
+	{
+		String timeNew= MySql.modificationTime();
+		if(!lastModifiedSQL.equals(timeNew))
+		{
+			lastModifiedSQL=timeNew;
+			return true;
+		}
+			
+			return false;
+	}
 	
 	
 	

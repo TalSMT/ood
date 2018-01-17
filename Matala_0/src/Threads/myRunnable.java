@@ -6,7 +6,9 @@ import java.io.File;
 
 import DataBase.SetDataBase;
 import Gui_Designer.Gui_Data;
+import Gui_Designer.SQL_window;
 import ReadAndWriteFiles.ReadWigleWifiFiles;
+import Sql.MySql;
 
 public class myRunnable implements Runnable{
 	ActionEvent arg0;
@@ -57,6 +59,12 @@ public class myRunnable implements Runnable{
 				
 				
 				
+
+			}
+			if (Modifications.SQLChanged())
+			{
+				System.out.println("i love changes in SQL");
+				Gui_Data.combData=MySql.sqlManage(Gui_Data.combData,SQL_window.txtInsertIp.getText(), SQL_window.txtInsertUrl.getText(), SQL_window.txtInsertDatabase.getText(), SQL_window.txtInsertPassword.getText());
 
 			}
 			
