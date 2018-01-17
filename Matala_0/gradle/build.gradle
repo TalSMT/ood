@@ -8,5 +8,6 @@ repositories {
     mavenCentral()
 }
 dependencies {
-  compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+     // compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+	  testImplementation 'junit:junit:4.12'
      } 

@@ -22,23 +22,22 @@ import Sample_Object.WifiPoint;
 import java.sql.Statement;
 
 
-
 public class MySql {
-
-
-
 	  private static String _ip ;
-
 	  private static String _url;
-
 	  private static String _user;
-
 	  private static String _password;
-
-	  
 	  private static Connection _con = null;
 
-	  
+	/**
+	 *   
+	 * @param oldDatabase
+	 * @param ip
+	 * @param url
+	 * @param user
+	 * @param password
+	 * @return merge list 
+	 */
     public static ArrayList<SampleOfWifi> sqlManage (ArrayList<SampleOfWifi> oldDatabase , String ip,String url,String user,String password)
     {
     	_ip=ip;
@@ -47,7 +46,7 @@ public class MySql {
     	_password=password;
         ArrayList<SampleOfWifi> listSampOfWifi = new ArrayList<>();
 
-        listSampOfWifi = readSqlTable(); //call test ex4 max id will be -1
+        listSampOfWifi = readSqlTable(); 
 
     	return mergeDatabase( oldDatabase,listSampOfWifi);
     }
