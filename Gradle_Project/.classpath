@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Tal/git/oop/Matala_0/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tal/git/oop/Matala_0/lib/JavaAPIforKml-2.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tal/git/oop/Matala_0/lib/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tal/git/oop/Matala_0/lib/jaxb-impl-2.1.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tal/git/oop/Matala_0/lib/jsr173_api-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tal/git/oop/Matala_0/lib/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
