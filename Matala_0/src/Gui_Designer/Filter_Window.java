@@ -241,7 +241,6 @@ public class Filter_Window {
 				}
 				Gui_Data.filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Time("+CheckBoxByTime.getText()+"<data<"+txtInsertEndTime.getText()+")))";
 				Gui_Data.label_Filter.setText(Gui_Data.filter_Properties);
-				//ׁ‰׀µׁ€׀´
 				Gui_Data.filterp=new FilterObject("","","",textFieldPhoneID.getText(),CheckBoxByTime.getText(),txtInsertEndTime.getText());
 				System.out.println(Gui_Data.filter_Properties);
 			}
@@ -265,7 +264,6 @@ public class Filter_Window {
 				}
 				Gui_Data.filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				Gui_Data.label_Filter.setText(Gui_Data.filter_Properties);
-				//ׁ‰׀µׁ€׀´
 				Gui_Data.filterp=new FilterObject(txtInsertRadios.getText(),txtInsertLat.getText(),txtInsertLon.getText(),textFieldPhoneID.getText(),"","");
 				System.out.println(Gui_Data.filter_Properties);
 			}
@@ -289,7 +287,6 @@ public class Filter_Window {
 				}
 				Gui_Data.filter_Properties="(Time("+CheckBoxByTime.getText()+"<data<"+txtInsertEndTime.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				Gui_Data.label_Filter.setText(Gui_Data.filter_Properties);
-				//ׁ‰׀µׁ€׀´
 				Gui_Data.filterp=new FilterObject(txtInsertRadios.getText(),txtInsertRadios.getText(),txtInsertLon.getText(),"",CheckBoxByTime.getText(),txtInsertEndTime.getText());
 				System.out.println(Gui_Data.filter_Properties);
 			}

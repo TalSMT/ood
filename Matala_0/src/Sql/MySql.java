@@ -12,7 +12,12 @@ import java.util.logging.Logger;
 import Sample_Object.SampleOfWifi;
 import Sample_Object.WifiPoint;
 import java.sql.Statement;
-
+/**
+ * This class is responsible for connecting to the Sql table 
+ * and updating the data structure according to the updating of this table.
+ * @author Tal And Shaked
+ *
+ */
 
 public class MySql {
 	  private static String _ip ;
@@ -22,13 +27,14 @@ public class MySql {
 	  private static Connection _con = null;
 
 	/**
-	 *   
+	 * This function is a manager function that calls a function that reads data from a table 
+	 * and unites with the existing data structure.
 	 * @param oldDatabase
 	 * @param ip
 	 * @param url
 	 * @param user
 	 * @param password
-	 * @return merge list 
+	 * @return merge list with updated data from the table of Sql
 	 */
     public static ArrayList<SampleOfWifi> sqlManage (ArrayList<SampleOfWifi> oldDatabase , String ip,String url,String user,String password)
     {
@@ -42,6 +48,12 @@ public class MySql {
 
     	return mergeDatabase( oldDatabase,listSampOfWifi);
     }
+    /**
+     * This function is responsible for merging the old and new data that comes from the Sql table
+     * @param oldDatabase
+     * @param newDatabase
+     * @return merge list
+     */
     
     public static ArrayList<SampleOfWifi> mergeDatabase(ArrayList<SampleOfWifi> oldDatabase,ArrayList<SampleOfWifi> newDatabase) {
     	boolean exists;
@@ -60,7 +72,10 @@ public class MySql {
 		}
     return merge;
     }
-    
+    /**
+     * This function is responsible for reading data from the sql table and returns its last modified date
+     * @return UPDATE_TIME from sql table
+     */
     
     public static String modificationTime() 
     {
@@ -120,7 +135,10 @@ public class MySql {
 
     }
     
-
+/**
+ * This function is responsible for reading data from an ASCII table and returns a list with this data
+ * @return listSampOfWifi
+ */
     public static ArrayList<SampleOfWifi> readSqlTable() {
         Statement st = null;
         ResultSet rs = null;
@@ -153,7 +171,7 @@ public class MySql {
             while (rs.next()) {
             	 ArrayList<WifiPoint> listWifiPoint = new ArrayList<>();
                  WifiPoint point;
-            	int size = rs.getInt(7);
+            	//int size = rs.getInt(7);
             	
             		System.out.println();
             		
@@ -173,6 +191,7 @@ public class MySql {
             		line.addWifiSpot(listWifiPoint);
             		listSampOfWifi.add(line);
             		
+            		System.out.println("done!!!!!");
             		return listSampOfWifi;
 
             }
@@ -205,7 +224,7 @@ public class MySql {
 
         }
 
-        System.out.println("done!!!!!");
+       // System.out.println("done!!!!!");
 
         return null;
     }

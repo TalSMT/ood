@@ -66,8 +66,8 @@ public class Modifications {
 	
 	//----------------------------------------------------------------SQL----------------------------------------------------------------------------------------
 	/**
-	 * 
-	 * @return
+	 * The function checks if there is an update in the Sql table
+	 * @return true If there was an update
 	 */
 	
 	public static boolean SQLChanged()
