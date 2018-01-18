@@ -82,41 +82,40 @@ public class MySql {
                  return rs.getString(1);
              }
 
-      //       PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
-
-       //      rs = pst.executeQuery();
+             PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
+             rs = pst.executeQuery();
 
 
          } catch (SQLException ex) {
-//
-//             Logger lgr = Logger.getLogger(MySql.class.getName());
-//
-//             lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+             Logger lgr = Logger.getLogger(MySql.class.getName());
+
+             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         	 System.out.println("no connection");
 
          } 
-         //       	 finally {
-//
-//             try {
-//
-//                 if (rs != null) {rs.close();}
-//
-//                 if (st != null) { st.close(); }
-//
-//                 if (_con != null) { _con.close();  }
-//
-//             } catch (SQLException ex) {
-//
-//                 
-//
-//                 Logger lgr = Logger.getLogger(MySql.class.getName());
-//
-//                 lgr.log(Level.WARNING, ex.getMessage(), ex);
-//
-//             }
-//
-//    
-//    }
+                	 finally {
+
+             try {
+
+                 if (rs != null) {rs.close();}
+
+                 if (st != null) { st.close(); }
+
+                 if (_con != null) { _con.close();  }
+
+             } catch (SQLException ex) {
+
+                 
+
+                 Logger lgr = Logger.getLogger(MySql.class.getName());
+
+                 lgr.log(Level.WARNING, ex.getMessage(), ex);
+
+             }
+
+    
+    }
          return null;
 
     }
@@ -139,11 +138,8 @@ public class MySql {
         	System.out.println(_url);
         	System.out.println(_user);
         	System.out.println(_password);
-
-            _con = DriverManager.getConnection("3306/oop_course_ariel","oop1","Lambda1();");
-
+            _con = DriverManager.getConnection(_url, _user, _password);
             st = _con.createStatement();
-
           //  rs = st.executeQuery("SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
             rs=st.executeQuery("SELECT * FROM ex4_db");
             if (rs.next()) {
@@ -151,30 +147,16 @@ public class MySql {
                 System.out.println("**** Update: "+rs.getString(1));
 
             }
-
-           
-
-           // PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
-
-         //   rs = pst.executeQuery();
-
-            
+            PreparedStatement pst = _con.prepareStatement("SELECT * FROM ex4_db");
+            rs = pst.executeQuery();
 
             while (rs.next()) {
             	 ArrayList<WifiPoint> listWifiPoint = new ArrayList<>();
                  WifiPoint point;
             	int size = rs.getInt(7);
-
-            	//int len = 7+2*size;
-
-
-//            		for(int i=1;i<=len;i++){
-//
-//            			System.out.print(ind+") "+rs.getString(i)+",");
-//
-//            		}
-
+            	
             		System.out.println();
+            		
             		time=rs.getString(2);
             		phoneId=rs.getString(3);
             		lat=rs.getString(4);
@@ -185,13 +167,13 @@ public class MySql {
             		for (int i =8 ; i<2*wifi_network+8;i=i+2){
             		signal=Double.parseDouble(rs.getString(i+1));
                         point = new WifiPoint("sql table",rs.getString(i), 0,signal);
-                        		//("from sql table","","","",rs.getString(i+1),wifi_Lat,wifi_Lon,wifi_Alt,"wifi",wifi_Device);
                         listWifiPoint.add(point);
 
             		}
             		line.addWifiSpot(listWifiPoint);
             		listSampOfWifi.add(line);
             		
+            		return listSampOfWifi;
 
             }
 
@@ -225,7 +207,7 @@ public class MySql {
 
         System.out.println("done!!!!!");
 
-        return listSampOfWifi;
+        return null;
     }
 
    

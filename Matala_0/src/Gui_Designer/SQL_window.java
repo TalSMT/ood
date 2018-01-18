@@ -21,9 +21,9 @@ public class SQL_window {
 
 	public static JFrame frame;
 	public static JTextField txtInsertIp;
-	public  static JTextField txtInsertUrl;
+	public  static JTextField txtInsertUserName;
 	public  static JTextField txtInsertPassword;
-	public static JTextField txtInsertDatabase;
+	public static JTextField txtInsertURL;
 	private JTextField txtTabelName;
 	/**
 	 * Launch the application.
@@ -67,11 +67,11 @@ public class SQL_window {
 		layeredPane.add(txtInsertIp);
 		txtInsertIp.setColumns(10);
 		
-		txtInsertUrl = new JTextField();
-		txtInsertUrl.setText("oop1");
-		txtInsertUrl.setColumns(10);
-		txtInsertUrl.setBounds(225, 227, 255, 26);
-		layeredPane.add(txtInsertUrl);
+		txtInsertUserName = new JTextField();
+		txtInsertUserName.setText("oop1");
+		txtInsertUserName.setColumns(10);
+		txtInsertUserName.setBounds(225, 227, 255, 26);
+		layeredPane.add(txtInsertUserName);
 		
 		txtInsertPassword = new JTextField();
 		txtInsertPassword.setText("Lambda1();");
@@ -79,20 +79,21 @@ public class SQL_window {
 		txtInsertPassword.setBounds(312, 284, 240, 26);
 		layeredPane.add(txtInsertPassword);
 		
-		txtInsertDatabase = new JTextField();
-		txtInsertDatabase.setText("jdbc:mysql://5.29.193.52:3306/oop_course_ariel");
-		txtInsertDatabase.setColumns(10);
-		txtInsertDatabase.setBounds(212, 161, 370, 26);
-		layeredPane.add(txtInsertDatabase);
+		txtInsertURL = new JTextField();
+		txtInsertURL.setText("jdbc:mysql://5.29.193.52:3306/oop_course_ariel");
+		txtInsertURL.setColumns(10);
+		txtInsertURL.setBounds(212, 161, 370, 26);
+		layeredPane.add(txtInsertURL);
 		
 		JButton btnConnect = new JButton("connect");
 		btnConnect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				////////////////////////////////////////////////////////////////////////////////
-				if ((txtInsertIp.getText()!="")&&(txtInsertUrl.getText()!="")&&(txtInsertPassword.getText()!="")&&(txtInsertDatabase.getText()!=""))
+				if ((txtInsertIp.getText()!="")&&(txtInsertUserName.getText()!="")&&(txtInsertPassword.getText()!="")&&(txtInsertURL.getText()!=""))
 				{
 					frame.dispose();
-					Gui_Data.combData=MySql.sqlManage(Gui_Data.combData,txtInsertIp.getText(), txtInsertUrl.getText(), txtInsertPassword.getText(), txtInsertDatabase.getText());
+					Gui_Data.combData=MySql.sqlManage(Gui_Data.combData,txtInsertIp.getText(),txtInsertURL.getText(), txtInsertUserName.getText(), txtInsertPassword.getText());
+					//frame.dispose();
 				}
 				
 				

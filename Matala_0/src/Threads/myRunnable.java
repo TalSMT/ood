@@ -58,8 +58,8 @@ public class myRunnable implements Runnable{
 			if (Modifications.SQLChanged())
 			{
 				System.out.println("i love changes in SQL");
-				Gui_Data.combData=MySql.sqlManage(Gui_Data.combData,SQL_window.txtInsertIp.getText(), SQL_window.txtInsertUrl.getText(), SQL_window.txtInsertDatabase.getText(), SQL_window.txtInsertPassword.getText());
-
+				Gui_Data.combData=MySql.sqlManage(Gui_Data.combData,SQL_window.txtInsertIp.getText(),SQL_window.txtInsertURL.getText(), SQL_window.txtInsertUserName.getText(), SQL_window.txtInsertPassword.getText());
+				
 			}
 			
 			//set sleep to the modification thread
