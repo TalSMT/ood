@@ -147,12 +147,12 @@ public class Gui_Data {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Tal\\git\\oop\\Matala_0\\bin\\back.png"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Tal\\git\\oop\\Matala_0\\img\\gui_back4.png"));
 		//image1=new ImageIcon(getClass().getResource("/black_background1.png"));
 		
 		frame.getContentPane().setBackground(new Color(0, 0, 128));
 		//frame.imageUpdate(image1, 0, 0, 0, 0, 0);
-		frame.setBounds(100, 100, 1225, 1072);
+		frame.setBounds(100, 100, 1225, 765);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//if((OutputfoldePath!="")&&(combPath==""))
 		System.out.println("kffffffffffffffffffffffffffffffffffff");
@@ -188,14 +188,15 @@ public class Gui_Data {
 		});
 		btnAlgorithms.setFont(new Font("Segoe UI", Font.PLAIN, 19));
 		
-		label_Filter = new JLabel("___________________________________________________________________________________________________");
-		label_Filter.setBounds(329, 497, 446, 18);
+		label_Filter = new JLabel("__________________________________________________");
+		label_Filter.setBounds(308, 468, 459, 64);
 		desktopPane_1.add(label_Filter);
 		label_Filter.setForeground(new Color(0, 255, 255));
 		label_Filter.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
 		
 		btnSql = new JButton("SQL");
-		btnSql.setBounds(106, 529, 61, 29);
+		btnSql.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		btnSql.setBounds(88, 529, 146, 29);
 		desktopPane_1.add(btnSql);
 		
 		AnsNumOfNetworks = new JLabel("0");
@@ -362,7 +363,7 @@ public class Gui_Data {
 				buttonExportKML.setForeground(new Color(0, 255, 255));
 				
 				lblNewLabel = new JLabel("New label");
-				lblNewLabel.setIcon(new ImageIcon("C:\\matala\\img\\gui_back4.png"));
+				lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tal\\git\\oop\\Matala_0\\img\\gui_back4.png"));
 				lblNewLabel.setBounds(0, -5, 1209, 739);
 				desktopPane_1.add(lblNewLabel);
 				btnDeleteDatabase.addActionListener(new ActionListener() {

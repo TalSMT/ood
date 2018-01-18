@@ -47,6 +47,7 @@ public class Filter_Window {
 	public static JCheckBox CheckboxByLocation;
 	public static JCheckBox CheckBoxByTime ;
 	public static JCheckBox CheckBoxByPhoneID;
+	private JLabel lblNewLabel;
 	
 	/**
 	 * Launch the application.
@@ -76,7 +77,7 @@ public class Filter_Window {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 840, 627);
+		frame.setBounds(100, 100, 870, 521);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
@@ -91,67 +92,67 @@ public class Filter_Window {
 			}
 		});
 		AndNotORcomboBox.setModel(new DefaultComboBoxModel(new String[] {"AND", "NOT", "OR"}));
-		AndNotORcomboBox.setBounds(357, 29, 93, 26);
+		AndNotORcomboBox.setBounds(23, 197, 93, 46);
 		desktopPane.add(AndNotORcomboBox);
 		
 		textFieldPhoneID = new JTextField();
 		textFieldPhoneID.setText("insert ID");
 		textFieldPhoneID.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldPhoneID.setColumns(10);
-		textFieldPhoneID.setBounds(304, 197, 191, 26);
+		textFieldPhoneID.setBounds(276, 108, 480, 26);
 		desktopPane.add(textFieldPhoneID);
 		
 		textField_insert_start_time = new JTextField();
 		textField_insert_start_time.setText("insert start time");
 		textField_insert_start_time.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_insert_start_time.setColumns(10);
-		textField_insert_start_time.setBounds(71, 197, 191, 26);
+		textField_insert_start_time.setBounds(276, 207, 218, 26);
 		desktopPane.add(textField_insert_start_time);
 		
 		txtInsertEndTime = new JTextField();
 		txtInsertEndTime.setText("insert end time");
 		txtInsertEndTime.setHorizontalAlignment(SwingConstants.CENTER);
 		txtInsertEndTime.setColumns(10);
-		txtInsertEndTime.setBounds(71, 254, 191, 26);
+		txtInsertEndTime.setBounds(519, 207, 237, 26);
 		desktopPane.add(txtInsertEndTime);
 		
 		txtInsertLat = new JTextField();
 		txtInsertLat.setText("insert lat");
 		txtInsertLat.setHorizontalAlignment(SwingConstants.CENTER);
 		txtInsertLat.setColumns(10);
-		txtInsertLat.setBounds(587, 197, 191, 26);
+		txtInsertLat.setBounds(276, 320, 218, 26);
 		desktopPane.add(txtInsertLat);
 		
 		txtInsertLon = new JTextField();
 		txtInsertLon.setText("insert lon");
 		txtInsertLon.setHorizontalAlignment(SwingConstants.CENTER);
 		txtInsertLon.setColumns(10);
-		txtInsertLon.setBounds(587, 254, 191, 26);
+		txtInsertLon.setBounds(519, 320, 237, 26);
 		desktopPane.add(txtInsertLon);
 		
 		txtInsertRadios = new JTextField();
 		txtInsertRadios.setText("insert radios");
 		txtInsertRadios.setHorizontalAlignment(SwingConstants.CENTER);
 		txtInsertRadios.setColumns(10);
-		txtInsertRadios.setBounds(587, 314, 191, 26);
+		txtInsertRadios.setBounds(359, 378, 237, 26);
 		desktopPane.add(txtInsertRadios);
 		
-		 CheckboxByLocation = new JCheckBox("by Location");
-		CheckboxByLocation.setBounds(607, 110, 148, 29);
+		 CheckboxByLocation = new JCheckBox("");
+		CheckboxByLocation.setBounds(158, 269, 21, 29);
 		desktopPane.add(CheckboxByLocation);
 		
-		CheckBoxByTime = new JCheckBox("by Time");
-		CheckBoxByTime.setBounds(82, 110, 148, 29);
+		CheckBoxByTime = new JCheckBox("");
+		CheckBoxByTime.setBounds(158, 161, 21, 29);
 		desktopPane.add(CheckBoxByTime);
 		
-		CheckBoxByPhoneID = new JCheckBox("by Phone ID");
-		CheckBoxByPhoneID.setBounds(345, 110, 121, 29);
+		CheckBoxByPhoneID = new JCheckBox("");
+		CheckBoxByPhoneID.setBounds(158, 65, 21, 26);
 		desktopPane.add(CheckBoxByPhoneID);
 		//---------------------------------------------export filtered comb database-----------------------------
 
-		JButton button = new JButton("export database filtered");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		button.addActionListener(new ActionListener() {
+		JButton btnExportDatabaseFiltered = new JButton("Export database filtered");
+		btnExportDatabaseFiltered.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnExportDatabaseFiltered.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				Gui_Data.combData= filterID(Gui_Data.combData);
@@ -168,10 +169,10 @@ public class Filter_Window {
 				Gui_Data.AnsNumOfNetworks.setText(""+SetDataBase.numOfDifferentMacSamples(Gui_Data.combData));
 			}
 		});
-		button.setForeground(new Color(248, 248, 255));
-		button.setBackground(new Color(138, 43, 226));
-		button.setBounds(50, 442, 247, 29);
-		desktopPane.add(button);
+		btnExportDatabaseFiltered.setForeground(new Color(248, 248, 255));
+		btnExportDatabaseFiltered.setBackground(Color.BLACK);
+		btnExportDatabaseFiltered.setBounds(10, 430, 273, 41);
+		desktopPane.add(btnExportDatabaseFiltered);
 		
 		JButton button_1 = new JButton("Filter properties");
 		button_1.addActionListener(new ActionListener() {
@@ -182,8 +183,8 @@ public class Filter_Window {
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		button_1.setForeground(new Color(248, 248, 255));
-		button_1.setBackground(new Color(138, 43, 226));
-		button_1.setBounds(341, 442, 199, 29);
+		button_1.setBackground(Color.BLACK);
+		button_1.setBounds(296, 430, 256, 41);
 		desktopPane.add(button_1);
 		
 		JButton button_2 = new JButton("Undo Filter ");
@@ -196,8 +197,8 @@ public class Filter_Window {
 		});
 		button_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		button_2.setForeground(new Color(248, 248, 255));
-		button_2.setBackground(new Color(138, 43, 226));
-		button_2.setBounds(586, 442, 149, 29);
+		button_2.setBackground(Color.BLACK);
+		button_2.setBounds(562, 430, 282, 41);
 		desktopPane.add(button_2);
 		
 		JButton btnClose = new JButton("close");
@@ -206,8 +207,13 @@ public class Filter_Window {
 				frame.dispose();
 			}
 		});
-		btnClose.setBounds(15, 16, 67, 29);
+		btnClose.setBounds(777, 11, 67, 29);
 		desktopPane.add(btnClose);
+		
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tal\\git\\oop\\Matala_0\\img\\filter.png"));
+		lblNewLabel.setBounds(0, 0, 857, 480);
+		desktopPane.add(lblNewLabel);
 	}
 	
 	
@@ -235,7 +241,7 @@ public class Filter_Window {
 				}
 				Gui_Data.filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Time("+CheckBoxByTime.getText()+"<data<"+txtInsertEndTime.getText()+")))";
 				Gui_Data.label_Filter.setText(Gui_Data.filter_Properties);
-				//щерд
+				//ׁ‰׀µׁ€׀´
 				Gui_Data.filterp=new FilterObject("","","",textFieldPhoneID.getText(),CheckBoxByTime.getText(),txtInsertEndTime.getText());
 				System.out.println(Gui_Data.filter_Properties);
 			}
@@ -259,7 +265,7 @@ public class Filter_Window {
 				}
 				Gui_Data.filter_Properties="(PhoneId("+textFieldPhoneID.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				Gui_Data.label_Filter.setText(Gui_Data.filter_Properties);
-				//щерд
+				//ׁ‰׀µׁ€׀´
 				Gui_Data.filterp=new FilterObject(txtInsertRadios.getText(),txtInsertLat.getText(),txtInsertLon.getText(),textFieldPhoneID.getText(),"","");
 				System.out.println(Gui_Data.filter_Properties);
 			}
@@ -283,7 +289,7 @@ public class Filter_Window {
 				}
 				Gui_Data.filter_Properties="(Time("+CheckBoxByTime.getText()+"<data<"+txtInsertEndTime.getText()+")||(Location("+txtInsertRadios.getText()+"<"+"Distance ("+txtInsertLat.getText()+","+txtInsertLon.getText()+"))))";
 				Gui_Data.label_Filter.setText(Gui_Data.filter_Properties);
-				//щерд
+				//ׁ‰׀µׁ€׀´
 				Gui_Data.filterp=new FilterObject(txtInsertRadios.getText(),txtInsertRadios.getText(),txtInsertLon.getText(),"",CheckBoxByTime.getText(),txtInsertEndTime.getText());
 				System.out.println(Gui_Data.filter_Properties);
 			}

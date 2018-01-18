@@ -67,14 +67,14 @@ public class Algo_Window {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1164, 839);
+		frame.setBounds(100, 100, 865, 526);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		frame.getContentPane().add(desktopPane, BorderLayout.CENTER);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(15, 0, 1112, 767);
+		layeredPane.setBounds(15, 0, 1112, 484);
 		desktopPane.add(layeredPane);
 		//-------------------------------------------call algo 1-------------------------------------
 
@@ -96,20 +96,21 @@ public class Algo_Window {
 		});
 		btn_CallAlgo1.setForeground(Color.CYAN);
 		btn_CallAlgo1.setBackground(Color.BLACK);
-		btn_CallAlgo1.setBounds(608, 182, 76, 46);
+		btn_CallAlgo1.setBounds(83, 102, 119, 35);
 		layeredPane.add(btn_CallAlgo1);
 		
 		txtMac = new JTextField();
 		txtMac.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtMac.setText("Insert Mac");
 		txtMac.setColumns(10);
-		txtMac.setBounds(194, 190, 295, 26);
+		txtMac.setBounds(405, 70, 295, 26);
 		layeredPane.add(txtMac);
 		
 		label_macLocation = new JLabel("___");
-		label_macLocation.setForeground(Color.CYAN);
+		label_macLocation.setBackground(Color.WHITE);
+		label_macLocation.setForeground(Color.BLACK);
 		label_macLocation.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
-		label_macLocation.setBounds(183, 254, 336, 18);
+		label_macLocation.setBounds(212, 102, 503, 35);
 		layeredPane.add(label_macLocation);
 		//-------------------------------------------call algo 2-------------------------------------
 
@@ -154,49 +155,49 @@ if ((!txtInsrertMac1.getText().isEmpty())&&(!txtInsrertMac2.getText().isEmpty())
 		});
 		btnSubmit.setForeground(Color.CYAN);
 		btnSubmit.setBackground(Color.BLACK);
-		btnSubmit.setBounds(654, 461, 246, 46);
+		btnSubmit.setBounds(523, 320, 179, 46);
 		layeredPane.add(btnSubmit);
 		
 		txtInsrertMac1 = new JTextField();
 		txtInsrertMac1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtInsrertMac1.setText("insrert mac1");
 		txtInsrertMac1.setColumns(10);
-		txtInsrertMac1.setBounds(158, 396, 194, 26);
+		txtInsrertMac1.setBounds(134, 209, 194, 26);
 		layeredPane.add(txtInsrertMac1);
 		
 		txtInsrertSignal1 = new JTextField();
 		txtInsrertSignal1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtInsrertSignal1.setText("insrert signal1");
 		txtInsrertSignal1.setColumns(10);
-		txtInsrertSignal1.setBounds(370, 396, 194, 26);
+		txtInsrertSignal1.setBounds(355, 209, 194, 26);
 		layeredPane.add(txtInsrertSignal1);
 		
 		txtInsrertSignal2 = new JTextField();
 		txtInsrertSignal2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtInsrertSignal2.setText("insrert signal2");
 		txtInsrertSignal2.setColumns(10);
-		txtInsrertSignal2.setBounds(370, 452, 194, 26);
+		txtInsrertSignal2.setBounds(355, 246, 194, 26);
 		layeredPane.add(txtInsrertSignal2);
 		
 		txtInsrertMac3 = new JTextField();
 		txtInsrertMac3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtInsrertMac3.setText("insrert mac3");
 		txtInsrertMac3.setColumns(10);
-		txtInsrertMac3.setBounds(158, 514, 194, 26);
+		txtInsrertMac3.setBounds(134, 283, 194, 26);
 		layeredPane.add(txtInsrertMac3);
 		
 		txtInsrertSignal3 = new JTextField();
 		txtInsrertSignal3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtInsrertSignal3.setText("insrert signal3");
 		txtInsrertSignal3.setColumns(10);
-		txtInsrertSignal3.setBounds(370, 514, 194, 26);
+		txtInsrertSignal3.setBounds(355, 283, 194, 26);
 		layeredPane.add(txtInsrertSignal3);
 		
 		txtInsrertMac2 = new JTextField();
 		txtInsrertMac2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtInsrertMac2.setText("insrert mac2");
 		txtInsrertMac2.setColumns(10);
-		txtInsrertMac2.setBounds(158, 452, 194, 26);
+		txtInsrertMac2.setBounds(134, 246, 194, 26);
 		layeredPane.add(txtInsrertMac2);
 		
 		txtInsrertStringOfCombLine = new JTextField();
@@ -205,7 +206,7 @@ if ((!txtInsrertMac1.getText().isEmpty())&&(!txtInsrertMac2.getText().isEmpty())
 		txtInsrertStringOfCombLine.setForeground(new Color(0, 0, 128));
 		txtInsrertStringOfCombLine.setColumns(10);
 		txtInsrertStringOfCombLine.setBackground(Color.WHITE);
-		txtInsrertStringOfCombLine.setBounds(91, 574, 455, 26);
+		txtInsrertStringOfCombLine.setBounds(94, 377, 455, 26);
 		layeredPane.add(txtInsrertStringOfCombLine);
 		 
 		 button = new JButton("close");
@@ -214,19 +215,19 @@ if ((!txtInsrertMac1.getText().isEmpty())&&(!txtInsrertMac2.getText().isEmpty())
 		 		frame.dispose();
 		 	}
 		 });
-		 button.setBounds(15, 16, 67, 29);
+		 button.setBounds(753, 11, 67, 29);
 		 layeredPane.add(button);
 		
 		 label_SamplerLocation = new JLabel("_________________________________");
 		label_SamplerLocation.setForeground(Color.CYAN);
 		label_SamplerLocation.setFont(new Font("Arial Unicode MS", Font.BOLD, 13));
 		label_SamplerLocation.setBackground(Color.BLACK);
-		label_SamplerLocation.setBounds(564, 579, 548, 18);
+		label_SamplerLocation.setBounds(70, 434, 645, 35);
 		layeredPane.add(label_SamplerLocation);
 		
 		 lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 1112, 751);
+		lblNewLabel.setBounds(-16, 0, 847, 487);
 		layeredPane.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tal\\git\\oop\\Matala_0\\bin\\back.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Tal\\git\\oop\\Matala_0\\img\\algo.png"));
 	}
 }
