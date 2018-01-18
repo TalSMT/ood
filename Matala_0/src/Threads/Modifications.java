@@ -65,7 +65,10 @@ public class Modifications {
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	//----------------------------------------------------------------SQL----------------------------------------------------------------------------------------
-	
+	/**
+	 * 
+	 * @return
+	 */
 	
 	public static boolean SQLChanged()
 	{
@@ -78,12 +81,7 @@ public class Modifications {
 			
 			return false;
 	}
-	
-	
-	
-	
-	
-	
+
 	public static void main(String[] args) throws FileNotFoundException {
 		File folderOfCsvFiles = new File("C:\\matala\\INPUT");
 		numOfFilesInFolder (folderOfCsvFiles);
